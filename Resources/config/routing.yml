@@ -1,0 +1,5 @@
+_ongr_plain_cms_snippet:
+    pattern:  /_proxy/cmsSnippet/{slug}/{template}
+    defaults:
+        _controller: ONGRContentBundle:Content:snippet
+        template: ONGRContentBundle:Content:plain_cms_snippet.html.twig

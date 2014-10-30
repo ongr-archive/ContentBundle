@@ -1,0 +1,29 @@
+{
+    "name": "ongr/content-bundle",
+    "description": "Main content bundle to handle category, product and content data.",
+    "type": "symfony-bundle",
+    "homepage": "http://ongr.io",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ONGR team",
+            "homepage": "http://www.nfq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "symfony/symfony": "~2.3",
+        "ongr/elasticsearch-bundle": "~0.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.1",
+        "squizlabs/php_codesniffer": "~1.5",
+        "ongr/router-bundle": "~0.1"
+    },
+    "suggest": {
+        "ongr/router-bundle": "Adds SEO friendly URLs"
+    },
+    "autoload": {
+        "psr-4": { "ONGR\\ContentBundle\\": "" }
+    }
+}

@@ -1,0 +1,3 @@
+ongr_content:
+    resource: "@ONGRContentBundle/Resources/config/routing.yml"
+    prefix:   /

@@ -1,0 +1,57 @@
+# Framework Configuration
+framework:
+    esi: ~
+    fragments:       { path: /_proxy }
+    secret: "TOP-SECRET"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: %kernel.debug%
+    templating:
+        engines: ['twig']
+    test: ~
+
+monolog:
+    handlers:
+        file:
+            type:  stream
+            action_level: error
+            path:  %kernel.logs_dir%/test.log
+ongr_elasticsearch:
+    connections:
+        default:
+            hosts:
+                - { host: 127.0.0.1:9200 }
+            index_name: ongr-content-bundle-test
+            settings:
+                refresh_interval: -1
+                number_of_replicas: 0
+    managers:
+        default:
+            connection: default
+            mappings:
+                - AcmeTestBundle
+
+ongr_content:
+    es:
+        repositories:
+            product: es.manager.default.product
+            content: es.manager.default.content
+            category: es.manager.default.category
+ongr_router:
+    es_manager: default
+    seo_routes:
+        product:
+            _route: ongr_product
+            _controller: ONGRDemoBundle:Product:document
+            _default_route: ongr_product
+            _id_param: document
+        category:
+            _route: ongr_category
+            _default_route: ongr_category
+            _id_param: document
+            _controller: ONGRDemoBundle:Category:document
+        content:
+            _route: ongr_content
+            _default_route: ongr_content
+            _id_param: document
+            _controller: ONGRDemoBundle:Content:document
