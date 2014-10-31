@@ -191,7 +191,7 @@ class CategoryExtension extends \Twig_Extension
      */
     public function getCategoryTree(
         \Twig_Environment $environment,
-        $template = 'ONGRContentBundle:Category:inc/categorytree.html.twig',
+        $template = 'ONGRContentBundle:Category:tree.html.twig',
         $maxLevel = 0,
         $selectedCategory = null
     ) {
@@ -218,7 +218,7 @@ class CategoryExtension extends \Twig_Extension
      */
     public function getCategoryChildTree(
         \Twig_Environment $environment,
-        $template = 'ONGRCategoryBundle:Category:inc/categorytree.html.twig',
+        $template = 'ONGRContentBundle:Category:tree.html.twig',
         $maxLevel = 0,
         $selectedCategory = null,
         $fromCategory = null
