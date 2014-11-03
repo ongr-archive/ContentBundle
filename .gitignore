@@ -1,7 +1,8 @@
 /.idea/
 .DS_Store
 /vendor/
-composer.lock
+/composer.lock
+/phpunit.xml
 /Tests/app/cache/
 /Tests/app/logs/
 /Tests/app/build/
