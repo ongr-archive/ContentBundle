@@ -67,7 +67,7 @@ class ContentExtensionTest extends \PHPUnit_Framework_TestCase
 
         $extension = $this->getContentExtension([$document2, $document]);
 
-        $this->assertEquals(array($document, $document2), $extension->getContentsBySlugsFunction(array(1, 2), true));
+        $this->assertEquals([$document, $document2], $extension->getContentsBySlugsFunction([1, 2], true));
     }
 
     /**
@@ -80,13 +80,13 @@ class ContentExtensionTest extends \PHPUnit_Framework_TestCase
         $out = array();
 
         // Case #0: inline strategy.
-        $out[] = array('inline');
+        $out[] = ['inline'];
 
         // Case #1: esi strategy.
-        $out[] = array('esi');
+        $out[] = ['esi'];
 
         // Case #2: ssi strategy.
-        $out[] = array('ssi');
+        $out[] = ['ssi'];
 
         return $out;
     }
@@ -125,6 +125,49 @@ class ContentExtensionTest extends \PHPUnit_Framework_TestCase
         );
 
         $extension->snippetFunction(1);
+    }
+
+    /**
+     * Tests extension when exception is thrown.
+     */
+    public function testSnippetFunctionWithException()
+    {
+        $router = $this->getRouterMock();
+        $router
+            ->expects($this->once())
+            ->method('generate')
+            ->with(
+                '_ongr_plain_cms_snippet',
+                [
+                    'template' => null,
+                    'slug' => 1
+                ]
+            );
+
+        $fragmentHandlerMock = $this->getFragmentHandlerMock();
+        $fragmentHandlerMock
+            ->expects($this->at(0))
+            ->method('render')
+            ->with(
+                $this->anything(),
+                []
+            )->will($this->throwException(new \InvalidArgumentException()));
+        $fragmentHandlerMock
+            ->expects($this->at(1))
+            ->method('render')
+            ->with(
+                $this->anything()
+            )->will($this->returnValue('content'));
+
+        $extension = new ContentExtension(
+            $fragmentHandlerMock,
+            $router,
+            [],
+            $this->getManager(),
+            'AcmeTestBundle:Content'
+        );
+
+        $this->assertEquals('content', $extension->snippetFunction(1));
     }
 
     /**
