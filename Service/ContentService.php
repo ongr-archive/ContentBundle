@@ -50,7 +50,7 @@ class ContentService
 
         $results = $this->repository->execute($search);
 
-        if (!isset($results)) {
+        if (count($results) === 0) {
             $this->logger && $this->logger->warning(
                 sprintf("Can not render snippet for '%s' because content was not found.", $slug)
             );

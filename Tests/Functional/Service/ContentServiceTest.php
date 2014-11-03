@@ -11,20 +11,45 @@
 
 namespace ONGR\ContentBundle\Tests\Functional\Service;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use ONGR\ContentBundle\Service\ContentService;
+use ONGR\ElasticsearchBundle\Test\ElasticsearchTestCase;
 
-class ContentServiceTest extends WebTestCase
+class ContentServiceTest extends ElasticsearchTestCase
 {
     /**
-     * Test if content service can be created.
+     * {@inheritdoc}
      */
-    public function testGetContentService()
+    protected function getDataArray()
     {
-        $container = self::createClient()->getContainer();
-        $this->assertTrue($container->has('ongr_content.content_service'));
-        $this->assertInstanceOf(
-            'ONGR\\ContentBundle\\Service\\ContentService',
-            $container->get('ongr_content.content_service')
-        );
+        return [
+            'default' => [
+                'content' => [
+                    [
+                        '_id' => 1,
+                        'slug' => 'foo'
+                    ],
+                    [
+                        '_id' => 2,
+                        'slug' => 'baz'
+                    ],
+                    [
+                        '_id' => 3,
+                        'slug' => 'awsome'
+                    ]
+                ]
+            ]
+        ];
+    }
+
+    /**
+     * Test if content service can retrieve document by slug.
+     */
+    public function testGetDocumentBySlug()
+    {
+        /** @var ContentService $contentService */
+        $contentService = $this->getContainer()->get('ongr_content.content_service');
+        $document = $contentService->getDocumentBySlug('baz');
+
+        $this->assertEquals(2, $document->getId(), 'Expected document with Id of 2.');
     }
 }
