@@ -46,6 +46,80 @@ class CategoryServiceTest extends ElasticsearchTestCase
                         'level' => 1,
                         'hidden' => false,
                     ],
+                    [
+                        '_id' => 'cat3',
+                        'active' => true,
+                        'sort' => 1,
+                        'left' => 1,
+                        'parent_id' => 'oxrootid',
+                        'level' => 1,
+                        'current' => true,
+                        'expanded' => true,
+                        'hidden' => false,
+                    ],
+                    [
+                        '_id' => 'cat4',
+                        'active' => true,
+                        'sort' => 1,
+                        'left' => 3,
+                        'parent_id' => 'oxrootid',
+                        'level' => 1,
+                        'hidden' => false,
+                    ],
+                    [
+                        '_id' => 'cat41',
+                        'active' => true,
+                        'sort' => 1,
+                        'left' => 4,
+                        'parent_id' => 'cat4',
+                        'level' => 2,
+                        'hidden' => false,
+                    ],
+                    [
+                        '_id' => 'cat42',
+                        'active' => true,
+                        'sort' => 1,
+                        'left' => 5,
+                        'parent_id' => 'cat4',
+                        'level' => 2,
+                        'hidden' => false,
+                    ],
+                    [
+                        '_id' => 'cat421',
+                        'active' => true,
+                        'sort' => 2,
+                        'left' => 7,
+                        'parent_id' => 'cat42',
+                        'level' => 3,
+                        'hidden' => false,
+                    ],
+                    [
+                        '_id' => 'cat422',
+                        'active' => true,
+                        'sort' => 1,
+                        'left' => 6,
+                        'parent_id' => 'cat42',
+                        'level' => 3,
+                        'hidden' => false,
+                    ],
+                    [
+                        '_id' => 'cat5',
+                        'active' => true,
+                        'sort' => 1,
+                        'left' => 3,
+                        'parent_id' => 'oxrootid',
+                        'level' => 1,
+                        'hidden' => false,
+                    ],
+                    [
+                        '_id' => 'cat6',
+                        'active' => true,
+                        'sort' => 1,
+                        'left' => 9,
+                        'parent_id' => 'oxrootid',
+                        'level' => 1,
+                        'hidden' => false,
+                    ],
                 ],
             ],
         ];
@@ -104,6 +178,9 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $cat->left = $category['left'];
         $cat->parentId = $category['parent_id'];
         $cat->setLevel($category['level']);
+        if (isset($category['hidden'])) {
+            $cat->hidden = $category['hidden'];
+        }
         isset($category['current']) && $cat->setCurrent($category['current']);
         isset($category['expanded']) && $cat->setExpanded($category['expanded']);
 
@@ -125,6 +202,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'left' => 2,
                 'parent_id' => 'oxrootid',
                 'level' => 1,
+                'hidden' => false,
             ],
             [
                 'id' => 'cat2',
@@ -133,6 +211,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'left' => 8,
                 'parent_id' => 'oxrootid',
                 'level' => 1,
+                'hidden' => false,
             ],
             [
                 'id' => 'cat3',
@@ -143,6 +222,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'level' => 1,
                 'current' => true,
                 'expanded' => true,
+                'hidden' => false,
             ],
             [
                 'id' => 'cat4',
@@ -151,6 +231,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'left' => 3,
                 'parent_id' => 'oxrootid',
                 'level' => 1,
+                'hidden' => false,
             ],
             [
                 'id' => 'cat41',
@@ -159,6 +240,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'left' => 4,
                 'parent_id' => 'cat4',
                 'level' => 2,
+                'hidden' => false,
             ],
             [
                 'id' => 'cat42',
@@ -167,6 +249,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'left' => 5,
                 'parent_id' => 'cat4',
                 'level' => 2,
+                'hidden' => false,
             ],
             [
                 'id' => 'cat421',
@@ -175,6 +258,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'left' => 7,
                 'parent_id' => 'cat42',
                 'level' => 3,
+                'hidden' => false,
             ],
             [
                 'id' => 'cat422',
@@ -183,6 +267,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'left' => 6,
                 'parent_id' => 'cat42',
                 'level' => 3,
+                'hidden' => false,
             ],
             [
                 'id' => 'cat5',
@@ -191,6 +276,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'left' => 3,
                 'parent_id' => 'oxrootid',
                 'level' => 1,
+                'hidden' => false,
             ],
             [
                 'id' => 'cat6',
@@ -199,15 +285,83 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'left' => 9,
                 'parent_id' => 'oxrootid',
                 'level' => 1,
+                'hidden' => false,
             ],
         ];
 
+        /** @var Category[] $data */
         $data = [];
         foreach ($catData as $category) {
             $data[$category['id']] = $this->buildCategory($category);
         }
+        foreach ($catData as $category) {
+            if ($category['parent_id'] == 'oxrootid') {
+                continue;
+            }
+            $data[$category['id']]->setParent($data[$category['parent_id']]);
+            $data[$category['parent_id']]->setChild($category['id'], $data[$category['id']]);
+        }
 
         return [['data' => $data]];
+    }
+
+    /**
+     * Tests get Tree.
+     *
+     * @param array $data
+     *
+     * @dataProvider treeDataProvider()
+     */
+    public function testGetTree(array $data)
+    {
+        $repository = $this->getManager()->getRepository('AcmeTestBundle:Category');
+
+        $service = new CategoryService($repository);
+
+        $service->setCurrentCategoryId('cat3');
+        $service->getCurrentCategoryDocument();
+        $service->setLimit(count($data) - 1);
+
+        /** @var \ArrayIterator $result */
+        $result = $service->getTree();
+
+        $expectedResult = [
+            'cat3' => clone $data['cat3'],
+            'cat1' => clone $data['cat1'],
+            'cat4' => clone $data['cat4'],
+            'cat5' => clone $data['cat5'],
+            // Skipped by limit 'cat6' => clone $data['cat6'], .
+            'cat2' => clone $data['cat2'],
+        ];
+
+        $this->assertEquals($expectedResult, $result->getArrayCopy());
+    }
+
+    /**
+     * Tests if proper current leaf is returned.
+     *
+     * @param Category[] $data
+     *
+     * @dataProvider treeDataProvider()
+     */
+    public function testGetCurrentCategoryDocument(array $data)
+    {
+        $service = new CategoryService($this->getManager()->getRepository('AcmeTestBundle:Category'));
+        $service->setCurrentCategoryId('cat42');
+
+        $leaf = $service->getCurrentCategoryDocument();
+        $this->assertEquals(null, $leaf);
+
+        /** @var \ArrayIterator $result */
+        $service->getTree();
+
+        $expected = $data['cat42'];
+        $expected->setCurrent(true);
+        $expected->setExpanded(true);
+        $expected->getParent()->setExpanded(true);
+
+        $leaf = $service->getCurrentCategoryDocument();
+        $this->assertEquals($expected, $leaf);
     }
 
     /**
@@ -229,9 +383,22 @@ class CategoryServiceTest extends ElasticsearchTestCase
             ]
         );
 
-        $out[] = [new \ArrayIterator([$cat1]), 5, 'cat1', [$cat1]];
+        $out[] = [
+            new \ArrayIterator([$cat1]),
+            5,
+            'cat1',
+            [$cat1],
+        ];
 
-        // Case #1 test finding in deeper level with multiple side categories.
+        // Case #1 test when first item shouldn't be found.
+        $out[] = [
+            new \ArrayIterator([$cat1]),
+            5,
+            'cat2',
+            [],
+        ];
+
+        // Case #2 test finding in deeper level with multiple side categories.
         $cat2 = $this->buildCategory(
             [
                 'id' => 'cat2',
@@ -300,16 +467,40 @@ class CategoryServiceTest extends ElasticsearchTestCase
             ]
         );
 
-        $tree = [$cat1, $cat2, $cat3, $cat4];
+        $tree = [
+            $cat1,
+            $cat2,
+            $cat3,
+            $cat4,
+        ];
 
         $cat4->setChild('cat42', $cat42);
         $cat4->setChild('cat41', $cat41);
         $cat42->setChild('cat421', $cat421);
 
-        $out[] = [new \ArrayIterator($tree), 5, 'cat42', [$cat42]];
+        $out[] = [
+            new \ArrayIterator($tree),
+            5,
+            'cat42',
+            [$cat42],
+        ];
 
-        // Case #2 test with improper arguments.
-        $out[] = [[], 0, null, null, 'Category Id must be defined on getPartialTree() method'];
+        // Case #3 test finding in deeper level when it shouldn't be actually found.
+        $out[] = [
+            new \ArrayIterator($tree),
+            5,
+            'cat45',
+            [],
+        ];
+
+        // Case #4 test with improper arguments.
+        $out[] = [
+            [],
+            0,
+            null,
+            null,
+            'Category Id must be defined on getPartialTree() method',
+        ];
 
         return $out;
     }
@@ -340,5 +531,54 @@ class CategoryServiceTest extends ElasticsearchTestCase
 
         $actualTree = $categoryService->getPartialTree($maxLevel, $categoryId);
         $this->assertEquals($expectedTree, $actualTree);
+    }
+
+    public function getCategoryDataProvider()
+    {
+        $rawData = [
+            [
+                'id' => 'cat1',
+                'active' => true,
+                'sort' => 1,
+                'left' => 2,
+                'parent_id' => 'oxrootid',
+                'level' => 1,
+                'hidden' => false,
+            ],
+            [
+                'id' => 'cat2',
+                'active' => true,
+                'sort' => 2,
+                'left' => 8,
+                'parent_id' => 'oxrootid',
+                'level' => 1,
+                'hidden' => false,
+            ],
+        ];
+
+        $data = [];
+        foreach ($rawData as $case) {
+            $data[] = [
+                'categoryId' => $case['id'],
+                'category' => $this->buildCategory($case),
+            ];
+        }
+
+        return $data;
+    }
+
+    /**
+     * Tests get Tree.
+     *
+     * @param string   $categoryId
+     * @param Category $category
+     *
+     * @dataProvider getCategoryDataProvider()
+     */
+    public function testGetCategory($categoryId, $category)
+    {
+        $service = new CategoryService($this->getManager()->getRepository('AcmeTestBundle:Category'));
+        $result = $service->getCategory($categoryId);
+        $this->assertEquals($category, $result);
     }
 }
