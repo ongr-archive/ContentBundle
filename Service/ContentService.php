@@ -50,7 +50,7 @@ class ContentService
 
         $results = $this->repository->execute($search);
 
-        if (isset($results)) {
+        if ($results->count()) {
             return $results->current();
         }
 
