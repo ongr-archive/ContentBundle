@@ -3,7 +3,6 @@ parameters:
     ongr_content.twig.category_extension.class: ONGR\ContentBundle\Twig\CategoryExtension
     ongr_content.content_service.class: ONGR\ContentBundle\Service\ContentService
     ongr_content.category_service.class: ONGR\ContentBundle\Service\CategoryService
-    ongr_content.category_list.class: ONGR\ContentBundle\Service\CategoryList
 
     ongr_content.product_per_page: 10
 
@@ -26,11 +25,6 @@ services:
         class: %ongr_content.content_service.class%
         calls:
             - [setLogger, [@?logger]]
-
-    ongr_content.category_list:
-        class: %ongr_content.category_list.class%
-        calls:
-            - [setProductsPerPage, [%ongr_content.product_per_page%]]
 
     ongr_content.category_service:
         class: %ongr_content.category_service.class%
