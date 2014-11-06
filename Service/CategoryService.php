@@ -182,11 +182,17 @@ class CategoryService
     {
         $tree = new \ArrayIterator();
         $references = new \ArrayIterator();
-
-        /** @var DocumentIterator $dataSet */
-        foreach ($dataSet as $node) {
-            if ($node->active) {
-                $this->buildNode($node, $references, $tree, $maxLevel);
+        $added = true;
+        // Need to generate tree from bottom to the top in order to add children and calculate their levels correctly.
+        while ($added) {
+            $added = false;
+            /** @var DocumentIterator $dataSet */
+            foreach ($dataSet as $key => $node) {
+                if ((isset($references[$node->parentId]) || $node->parentId == 'oxrootid') && $node->active) {
+                    $this->buildNode($node, $references, $tree, $maxLevel);
+                    unset($dataSet[$key]);
+                    $added = true;
+                }
             }
         }
 

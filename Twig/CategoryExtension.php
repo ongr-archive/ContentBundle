@@ -223,6 +223,9 @@ class CategoryExtension extends \Twig_Extension
         $selectedCategory = null,
         $fromCategory = null
     ) {
+        $this->setMaxLevel($maxLevel);
+        $this->setTemplate($template);
+
         $this->categoryService->setCurrentCategoryId($selectedCategory);
 
         $tree = $this->categoryService->getPartialTree($maxLevel, $fromCategory);
