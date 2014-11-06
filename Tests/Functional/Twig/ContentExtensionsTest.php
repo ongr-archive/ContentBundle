@@ -16,7 +16,7 @@ use ONGR\ElasticsearchBundle\Test\ElasticsearchTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class ContentExtensionsIntegrationTest extends ElasticsearchTestCase
+class ContentExtensionsTest extends ElasticsearchTestCase
 {
     /**
      * {@inheritdoc}
@@ -39,11 +39,11 @@ class ContentExtensionsIntegrationTest extends ElasticsearchTestCase
     }
 
     /**
-     * Test data provider for testSnippetFunctionIntegration().
+     * Test data provider for testSnippetFunction().
      *
      * @return array
      */
-    public function getTestSnippetFunctionIntegrationData()
+    public function getTestSnippetFunctionData()
     {
         $out = array();
 
@@ -78,9 +78,9 @@ class ContentExtensionsIntegrationTest extends ElasticsearchTestCase
      * @param string  $expectedContent
      * @param string  $strategy
      *
-     * @dataProvider   getTestSnippetFunctionIntegrationData()
+     * @dataProvider   getTestSnippetFunctionData()
      */
-    public function testSnippetFunctionIntegration($request, $slug, $expectedContent, $strategy = 'esi')
+    public function testSnippetFunction($request, $slug, $expectedContent, $strategy = 'esi')
     {
         // Custom logic for Symfony 2.4+.
         if ($this->getContainer()->has('request_stack')) {

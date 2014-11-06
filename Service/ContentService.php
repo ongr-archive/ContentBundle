@@ -50,36 +50,14 @@ class ContentService
 
         $results = $this->repository->execute($search);
 
-        if (isset($results)) {
-            return $results->current();
-        }
-
-        return null;
-    }
-
-    /**
-     * Returns data for content snippet render action.
-     *
-     * @param string $slug
-     *
-     * @return array
-     */
-    public function getDataForSnippet($slug)
-    {
-        $document = $this->getDocumentBySlug($slug);
-
-        if (!$document) {
+        if (count($results) === 0) {
             $this->logger && $this->logger->warning(
                 sprintf("Can not render snippet for '%s' because content was not found.", $slug)
             );
 
-            return ['content' => '', 'title' => null, 'document' => null];
+            return null;
         }
 
-        return [
-            'content' => $document->content,
-            'title' => $document->title,
-            'document' => $document,
-        ];
+        return $results->current();
     }
 }
