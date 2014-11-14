@@ -19,13 +19,18 @@ use ONGR\ElasticsearchBundle\Test\ElasticsearchTestCase;
 class CategoryExtensionTest extends ElasticsearchTestCase
 {
     /**
+     * @const TEMPLATE_PATH Resource type path to the testing template.
+     */
+    const TEMPLATE_PATH = '@ONGRTestingBundle/Resources/views/Category/tree.html.twig';
+
+    /**
      * {@inheritdoc}
      */
     protected function getDataArray()
     {
         return [
             'default' => [
-                'category' => [
+                'content_category' => [
                     [
                         '_id' => '1',
                         'parent_id' => 'oxrootid',
@@ -167,7 +172,7 @@ class CategoryExtensionTest extends ElasticsearchTestCase
         /** @var \Twig_Environment $environment */
         $environment = clone $container->get('twig');
         $environment->setLoader(new \Twig_Loader_String());
-        $treeTemplate = file_get_contents(__DIR__ . '/../../../Resources/views/Category/tree.html.twig');
+        $treeTemplate = file_get_contents($container->get('kernel')->locateResource(self::TEMPLATE_PATH));
 
         $result = $environment->render("{{ getCategoryTree('{$treeTemplate}', {$maxLevel}, {$selectedCategory}) }}");
         $tree = $this->getTreeData(simplexml_load_string($result));
@@ -185,7 +190,7 @@ class CategoryExtensionTest extends ElasticsearchTestCase
         /** @var \Twig_Environment $environment */
         $environment = clone $container->get('twig');
         $environment->setLoader(new \Twig_Loader_String());
-        $treeTemplate = file_get_contents(__DIR__ . '/../../../Resources/views/Category/tree.html.twig');
+        $treeTemplate = file_get_contents($container->get('kernel')->locateResource(self::TEMPLATE_PATH));
 
         $expectedTree = [
             'type' => 'ul',

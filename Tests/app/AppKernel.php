@@ -28,12 +28,11 @@ class AppKernel extends Kernel
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
+            new ONGR\TestingBundle\ONGRTestingBundle(),
+
             new ONGR\ElasticsearchBundle\ONGRElasticsearchBundle(),
             new ONGR\RouterBundle\ONGRRouterBundle(),
             new ONGR\ContentBundle\ONGRContentBundle(),
-
-            // For testing document loading.
-            new \ONGR\ContentBundle\Tests\app\fixture\Acme\TestBundle\AcmeTestBundle(),
         ];
     }
 

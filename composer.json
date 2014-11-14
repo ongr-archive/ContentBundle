@@ -18,7 +18,8 @@
     "require-dev": {
         "phpunit/phpunit": "~4.1",
         "squizlabs/php_codesniffer": "~1.5",
-        "ongr/router-bundle": "~0.1"
+        "ongr/router-bundle": "~0.1",
+        "ongr/testing-bundle": "~1.0"
     },
     "suggest": {
         "ongr/router-bundle": "Adds SEO friendly URLs"
