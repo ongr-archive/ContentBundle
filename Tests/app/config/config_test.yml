@@ -29,14 +29,14 @@ ongr_elasticsearch:
         default:
             connection: default
             mappings:
-                - AcmeTestBundle
+                - ONGRTestingBundle
 
 ongr_content:
     es:
         repositories:
             product: es.manager.default.product
             content: es.manager.default.content
-            category: es.manager.default.category
+            category: es.manager.default.contentcategory
 ongr_router:
     es_manager: default
     seo_routes:

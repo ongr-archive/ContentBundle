@@ -12,8 +12,8 @@
 namespace ONGR\ContentBundle\Tests\Unit\Service;
 
 use ONGR\ContentBundle\Service\CategoryService;
-use ONGR\ContentBundle\Tests\app\fixture\Acme\TestBundle\Document\Category;
 use ONGR\ElasticsearchBundle\Test\ElasticsearchTestCase;
+use ONGR\TestingBundle\Document\ContentCategory;
 
 /**
  * Provides tests for category service.
@@ -27,7 +27,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
     {
         return [
             'default' => [
-                'category' => [
+                'content_category' => [
                     [
                         '_id' => 'cat1',
                         'active' => true,
@@ -167,11 +167,11 @@ class CategoryServiceTest extends ElasticsearchTestCase
      *
      * @param array $category
      *
-     * @return Category
+     * @return ContentCategory
      */
     protected function buildCategory($category)
     {
-        $cat = new Category();
+        $cat = new ContentCategory();
         $cat->id = $category['id'];
         $cat->active = $category['active'];
         $cat->sort = $category['sort'];
@@ -518,7 +518,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
      */
     public function testGetPartialTree($tree, $maxLevel, $categoryId, $expectedTree, $exception = '')
     {
-        /** @var CategoryService|\PHPUnit_Framework_MockObject_MockObject $categoryService */
+        /** @var $categoryService CategoryService|\PHPUnit_Framework_MockObject_MockObject */
         $categoryService = $this->getMockBuilder('ONGR\ContentBundle\Service\CategoryService')
             ->disableOriginalConstructor()
             ->setMethods(['getTree'])
@@ -570,14 +570,14 @@ class CategoryServiceTest extends ElasticsearchTestCase
     /**
      * Tests get Tree.
      *
-     * @param string   $categoryId
-     * @param Category $category
+     * @param string          $categoryId
+     * @param ContentCategory $category
      *
      * @dataProvider getCategoryDataProvider()
      */
     public function testGetCategory($categoryId, $category)
     {
-        $service = new CategoryService($this->getManager()->getRepository('AcmeTestBundle:Category'));
+        $service = new CategoryService($this->getManager()->getRepository('ONGRTestingBundle:ContentCategory'));
         $result = $service->getCategory($categoryId);
         $this->assertEquals($category, $result);
     }
