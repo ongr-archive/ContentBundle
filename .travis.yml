@@ -8,5 +8,5 @@ services:
 before_script:
   - composer update --prefer-dist
 script:
-  - vendor/bin/phpunit
-  - vendor/bin/phpcs -p --standard=PSR2 --ignore=vendor/,Tests/app/ ./
+  - vendor/bin/phpunit --coverage-text
+  - vendor/bin/phpcs -p --standard=$TRAVIS_BUILD_DIR/vendor/ongr/ongr-strict-standard/ONGR --ignore=vendor/,Tests/app/,Resources/public/
