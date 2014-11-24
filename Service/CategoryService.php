@@ -206,7 +206,7 @@ class CategoryService
     {
         /** @var CategoryTrait $node */
         if (is_array($tree)) {
-            uasort($tree, array($this, 'sortNodes'));
+            uasort($tree, [$this, 'sortNodes']);
             foreach ($tree as $node) {
                 $children = $node->getChildren();
                 if ($children) {
@@ -215,7 +215,7 @@ class CategoryService
                 }
             }
         } else {
-            $tree->uasort(array($this, 'sortNodes'));
+            $tree->uasort([$this, 'sortNodes']);
             $tree->rewind();
             foreach ($tree as $node) {
                 $children = $node->getChildren();
@@ -304,7 +304,7 @@ class CategoryService
         /** @var CategoryTrait $node */
         foreach ($tree as $node) {
             if ($node->id == $categoryId) {
-                return array($node);
+                return [$node];
             }
             if ($node->getChildren()) {
                 $result = $this->findPartialTree($node->getChildren(), $categoryId);

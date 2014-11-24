@@ -11,6 +11,11 @@
 
 namespace ONGR\ContentBundle\Document;
 
+/**
+ * Trait used for documents which require Category standard fields.
+ *
+ * @package ONGR\ContentBundle\Document
+ */
 trait CategoryTrait
 {
     /**

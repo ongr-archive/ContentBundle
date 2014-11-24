@@ -45,7 +45,7 @@ class ContentExtensionsTest extends ElasticsearchTestCase
      */
     public function getTestSnippetFunctionData()
     {
-        $out = array();
+        $out = [];
 
         // Case #0: empty request.
         $request = new Request();

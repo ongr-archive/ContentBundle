@@ -26,16 +26,16 @@ class ContentServiceTest extends ElasticsearchTestCase
                 'content' => [
                     [
                         '_id' => 1,
-                        'slug' => 'foo'
+                        'slug' => 'foo',
                     ],
                     [
                         '_id' => 2,
-                        'slug' => 'baz'
+                        'slug' => 'baz',
                     ],
                     [
                         '_id' => 3,
-                        'slug' => 'awsome'
-                    ]
+                        'slug' => 'awsome',
+                    ],
                 ]
             ]
         ];

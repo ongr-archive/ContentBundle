@@ -77,7 +77,7 @@ class ContentExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function getTestSnippetFunctionData()
     {
-        $out = array();
+        $out = [];
 
         // Case #0: inline strategy.
         $out[] = ['inline'];
@@ -140,7 +140,7 @@ class ContentExtensionTest extends \PHPUnit_Framework_TestCase
                 '_ongr_plain_cms_snippet',
                 [
                     'template' => null,
-                    'slug' => 1
+                    'slug' => 1,
                 ]
             );
 

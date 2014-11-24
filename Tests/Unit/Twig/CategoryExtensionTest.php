@@ -72,7 +72,7 @@ class CategoryExtensionTest extends WebTestCase
         $template = 'testTemplate';
         $expected = 'testStr';
 
-        $environment = $this->getMock('Twig_Environment', array('render'));
+        $environment = $this->getMock('Twig_Environment', ['render']);
         $environment->expects($this->once())
             ->method('render')
             ->with(
@@ -104,7 +104,7 @@ class CategoryExtensionTest extends WebTestCase
         $tree = [1];
         $categoryDocument = new \stdClass();
 
-        $environment = $this->getMock('Twig_Environment', array('render'));
+        $environment = $this->getMock('Twig_Environment', ['render']);
         $environment->expects($this->once())
             ->method('render')
             ->with(
