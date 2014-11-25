@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ONGR\ContentBundle\Document;
+namespace ONGR\ContentBundle\Document\Traits;
 
 /**
  * Trait used for documents which require Category standard fields.

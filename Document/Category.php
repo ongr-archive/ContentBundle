@@ -9,29 +9,39 @@
  * file that was distributed with this source code.
  */
 
-namespace ONGR\ContentBundle\Tests\app\fixture\Acme\TestBundle\Document;
+namespace ONGR\ContentBundle\Document;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
 use ONGR\ElasticsearchBundle\Document\DocumentInterface;
 use ONGR\ElasticsearchBundle\Document\DocumentTrait;
-use ONGR\ContentBundle\Document\Traits\CategoryTrait;
-use ONGR\RouterBundle\Document\SeoAwareTrait;
 
 /**
- * Dummy category document.
+ * Category document.
  *
- * @ES\Document(type="category")
+ * @ES\Document
  */
 class Category implements DocumentInterface
 {
     use DocumentTrait;
-    use CategoryTrait;
-    use SeoAwareTrait;
 
     /**
-     * @var string
-     *
-     * @ES\Property(type="string", name="title")
+     * @var bool
      */
-    public $title;
+    private $hiddenField;
+
+    /**
+     * @return bool
+     */
+    public function isHiddenField()
+    {
+        return $this->hiddenField;
+    }
+
+    /**
+     * @param bool $hiddenField
+     */
+    public function setHiddenField($hiddenField)
+    {
+        $this->hiddenField = $hiddenField;
+    }
 }
