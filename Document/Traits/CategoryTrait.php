@@ -317,6 +317,14 @@ trait CategoryTrait
     /**
      * @return bool
      */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @return bool
+     */
     public function isHidden()
     {
         return $this->hidden;
@@ -328,6 +336,14 @@ trait CategoryTrait
     public function setHidden($hidden)
     {
         $this->hidden = $hidden;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHidden()
+    {
+        return $this->hidden;
     }
 
     /**

@@ -90,14 +90,14 @@ class CategoryService
      */
     private function buildChildNode($node, $references, $maxLevel)
     {
-        if (isset($references[$node->parentId])) {
-            $level = $references[$node->parentId]->getLevel() + 1;
+        if (isset($references[$node->getParentId()])) {
+            $level = $references[$node->getParentId()]->getLevel() + 1;
 
             // Check if max level is not reached or not set at all.
             if ($maxLevel == 0 || $level <= $maxLevel) {
                 $node->setLevel($level);
-                $node->setParent($references[$node->parentId]);
-                $references[$node->parentId]->setChild($node->id, $node);
+                $node->setParent($references[$node->getParentId()]);
+                $references[$node->getParentId()]->setChild($node, $node->id);
             }
         }
     }
@@ -146,7 +146,7 @@ class CategoryService
 
         $references[$node->id] = $node;
 
-        if ($node->parentId == 'oxrootid') {
+        if ($node->getParentId() == 'oxrootid') {
             $this->buildRootNode($node, $tree, 1);
         } else {
             $this->buildChildNode($node, $references, $maxLevel);
@@ -165,7 +165,7 @@ class CategoryService
         if ($id) {
             while (isset($references[$id])) {
                 $references[$id]->setExpanded(true);
-                $id = $references[$id]->parentId;
+                $id = $references[$id]->getParentId();
             }
         }
     }
@@ -185,7 +185,7 @@ class CategoryService
 
         /** @var DocumentIterator $dataSet */
         foreach ($dataSet as $node) {
-            if ($node->active) {
+            if ($node->isActive()) {
                 $this->buildNode($node, $references, $tree, $maxLevel);
             }
         }
