@@ -340,7 +340,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
     /**
      * Tests if proper current leaf is returned.
      *
-     * @param Category[] $data
+     * @param array|Category[] $data
      *
      * @dataProvider treeDataProvider()
      */
@@ -518,7 +518,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
      */
     public function testGetPartialTree($tree, $maxLevel, $categoryId, $expectedTree, $exception = '')
     {
-        /** @var CategoryService|\PHPUnit_Framework_MockObject_MockObject $categoryService */
+        /* @var CategoryService|\PHPUnit_Framework_MockObject_MockObject $categoryService */
         $categoryService = $this->getMockBuilder('ONGR\ContentBundle\Service\CategoryService')
             ->disableOriginalConstructor()
             ->setMethods(['getTree'])
@@ -533,6 +533,11 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $this->assertEquals($expectedTree, $actualTree);
     }
 
+    /**
+     * Prepares data for testGetCategory().
+     *
+     * @return array
+     */
     public function getCategoryDataProvider()
     {
         $rawData = [

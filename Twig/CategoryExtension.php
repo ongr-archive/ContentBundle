@@ -115,7 +115,7 @@ class CategoryExtension extends \Twig_Extension
                 ],
                 [
                     'needs_environment' => true,
-                    'is_safe' => array('html'),
+                    'is_safe' => ['html'],
                 ]
             ),
             'render_tree' => new \Twig_SimpleFunction(
@@ -126,7 +126,7 @@ class CategoryExtension extends \Twig_Extension
                 ],
                 [
                     'needs_environment' => true,
-                    'is_safe' => array('html'),
+                    'is_safe' => ['html'],
                 ]
             ),
             'category_child_tree' => new \Twig_SimpleFunction(
@@ -137,7 +137,7 @@ class CategoryExtension extends \Twig_Extension
                 ],
                 [
                     'needs_environment' => true,
-                    'is_safe' => array('html'),
+                    'is_safe' => ['html'],
                 ]
             ),
         ];

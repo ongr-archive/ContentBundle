@@ -109,7 +109,7 @@ class ContentExtension extends \Twig_Extension
         $result = $this->repository->execute($search);
 
         if ($keepOrder) {
-            $orderedResult = array();
+            $orderedResult = [];
             foreach ($slugs as $slug) {
                 foreach ($result as $document) {
                     if ($document->slug == $slug) {
