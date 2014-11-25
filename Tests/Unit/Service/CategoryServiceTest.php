@@ -299,7 +299,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 continue;
             }
             $data[$category['id']]->setParent($data[$category['parent_id']]);
-            $data[$category['parent_id']]->setChild($category['id'], $data[$category['id']]);
+            $data[$category['parent_id']]->setChild($data[$category['id']], $category['id']);
         }
 
         return [['data' => $data]];
@@ -474,9 +474,9 @@ class CategoryServiceTest extends ElasticsearchTestCase
             $cat4,
         ];
 
-        $cat4->setChild('cat42', $cat42);
-        $cat4->setChild('cat41', $cat41);
-        $cat42->setChild('cat421', $cat421);
+        $cat4->setChild($cat42, 'cat42');
+        $cat4->setChild($cat41, 'cat41');
+        $cat42->setChild($cat421, 'cat421');
 
         $out[] = [
             new \ArrayIterator($tree),

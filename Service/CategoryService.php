@@ -11,7 +11,7 @@
 
 namespace ONGR\ContentBundle\Service;
 
-use ONGR\ContentBundle\Document\CategoryTrait;
+use ONGR\ContentBundle\Document\Category;
 use ONGR\ElasticsearchBundle\Document\DocumentInterface;
 use ONGR\ElasticsearchBundle\DSL\Query\TermQuery;
 use ONGR\ElasticsearchBundle\DSL\Search;
@@ -84,7 +84,7 @@ class CategoryService
     /**
      * Builds a child node.
      *
-     * @param CategoryTrait  $node
+     * @param Category       $node
      * @param \ArrayIterator $references
      * @param int            $maxLevel
      */
@@ -119,7 +119,7 @@ class CategoryService
     /**
      * Builds a root node.
      *
-     * @param CategoryTrait  $node
+     * @param Category       $node
      * @param \ArrayIterator $tree
      * @param int            $level
      */
@@ -132,7 +132,7 @@ class CategoryService
     /**
      * Builds a node. Sets node parameters.
      *
-     * @param CategoryTrait  $node
+     * @param Category       $node
      * @param \ArrayIterator $references
      * @param \ArrayIterator $tree
      * @param int            $maxLevel
@@ -204,7 +204,7 @@ class CategoryService
      */
     protected function sortChildTree(&$tree)
     {
-        /** @var CategoryTrait $node */
+        /** @var Category $node */
         if (is_array($tree)) {
             uasort($tree, [$this, 'sortNodes']);
             foreach ($tree as $node) {
@@ -230,8 +230,8 @@ class CategoryService
     /**
      * Sorts nodes by field sort if value equal then by field left.
      *
-     * @param CategoryTrait $a
-     * @param CategoryTrait $b
+     * @param Category $a
+     * @param Category $b
      *
      * @return int
      */
@@ -301,7 +301,7 @@ class CategoryService
      */
     protected function findPartialTree($tree, $categoryId)
     {
-        /** @var CategoryTrait $node */
+        /** @var Category $node */
         foreach ($tree as $node) {
             if ($node->id == $categoryId) {
                 return [$node];
