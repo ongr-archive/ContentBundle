@@ -16,6 +16,8 @@ use ONGR\ElasticsearchBundle\Document\DocumentTrait;
 
 /**
  * Class Store.
+ *
+ * @ES\Document(type="store")
  */
 class Store implements DocumentInterface
 {

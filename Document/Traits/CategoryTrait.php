@@ -23,49 +23,49 @@ trait CategoryTrait
      *
      * @ES\Property(type="string", name="root_id")
      */
-    public $rootId;
+    private $rootId;
 
     /**
      * @var int
      *
      * @ES\Property(type="integer", name="left")
      */
-    public $left;
+    private $left;
 
     /**
      * @var int
      *
      * @ES\Property(type="integer", name="right")
      */
-    public $right;
+    private $right;
 
     /**
      * @var string
      *
      * @ES\Property(type="string", name="sort")
      */
-    public $sort;
+    private $sort;
 
     /**
      * @var bool
      *
      * @ES\Property(type="boolean", name="active")
      */
-    public $active;
+    private $active;
 
     /**
      * @var bool
      *
      * @ES\Property(type="boolean", name="hidden")
      */
-    public $hidden;
+    private $hidden;
 
     /**
      * @var string
      *
      * @ES\Property(type="string", name="parent_id")
      */
-    public $parentId;
+    private $parentId;
 
     /**
      * @var int
@@ -87,7 +87,7 @@ trait CategoryTrait
     /**
      * @var array
      */
-    public $breadcrumbs;
+    private $breadcrumbs;
 
     /**
      * @var array
@@ -151,16 +151,199 @@ trait CategoryTrait
     /**
      * If key is null value is put to the end.
      *
-     * @param string $key
      * @param mixed  $value
+     * @param string $key
      */
-    public function setChild($key, $value)
+    public function setChild($value, $key = null)
     {
         if (empty($key)) {
             $this->children[] = $value;
         } else {
             $this->children[$key] = $value;
         }
+    }
+
+    /**
+     * Adds child to the end of children array.
+     *
+     * @param mixed $value
+     */
+    public function addChild($value)
+    {
+        $this->setChild($value);
+    }
+
+    /**
+     * Tests if category has any breadcrumbs.
+     *
+     * @return bool
+     */
+    public function hasBreadcrumbs()
+    {
+        return is_array($this->breadcrumbs) && count($this->breadcrumbs);
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return mixed
+     */
+    public function getBreadcrumb($key)
+    {
+        return $this->breadcrumbs[$key];
+    }
+
+    /**
+     * If key is null value is put to the end.
+     *
+     * @param mixed  $value
+     * @param string $key
+     */
+    public function setBreadcrumb($value, $key = null)
+    {
+        if (empty($key)) {
+            $this->breadcrumbs[] = $value;
+        } else {
+            $this->breadcrumbs[$key] = $value;
+        }
+    }
+
+    /**
+     * Add breadcrumb to end of breadcrumbs array.
+     *
+     * @param mixed $value
+     */
+    public function addBreadcrumb($value)
+    {
+        $this->setBreadcrumb($value);
+    }
+
+    /**
+     * @return array
+     */
+    public function getBreadcrumbs()
+    {
+        return $this->breadcrumbs;
+    }
+
+    /**
+     * @param array $breadcrumbs
+     */
+    public function setBreadcrumbs($breadcrumbs)
+    {
+        $this->breadcrumbs = $breadcrumbs;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRootId()
+    {
+        return $this->rootId;
+    }
+
+    /**
+     * @param string $rootId
+     */
+    public function setRootId($rootId)
+    {
+        $this->rootId = $rootId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLeft()
+    {
+        return $this->left;
+    }
+
+    /**
+     * @param int $left
+     */
+    public function setLeft($left)
+    {
+        $this->left = $left;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRight()
+    {
+        return $this->right;
+    }
+
+    /**
+     * @param int $right
+     */
+    public function setRight($right)
+    {
+        $this->right = $right;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSort()
+    {
+        return $this->sort;
+    }
+
+    /**
+     * @param string $sort
+     */
+    public function setSort($sort)
+    {
+        $this->sort = $sort;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param bool $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isHidden()
+    {
+        return $this->hidden;
+    }
+
+    /**
+     * @param bool $hidden
+     */
+    public function setHidden($hidden)
+    {
+        $this->hidden = $hidden;
+    }
+
+    /**
+     * @param string $parentId
+     */
+    public function setParentId($parentId)
+    {
+        $this->parentId = $parentId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getParentId()
+    {
+        return $this->parentId;
     }
 
     /**
@@ -209,14 +392,6 @@ trait CategoryTrait
     public function getLevel()
     {
         return $this->level;
-    }
-
-    /**
-     * @param string $parentId
-     */
-    public function setParentId($parentId)
-    {
-        $this->parentId = $parentId;
     }
 
     /**

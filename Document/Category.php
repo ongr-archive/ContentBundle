@@ -11,6 +11,7 @@
 
 namespace ONGR\ContentBundle\Document;
 
+use ONGR\ContentBundle\Document\Traits\CategoryTrait;
 use ONGR\ElasticsearchBundle\Annotation as ES;
 use ONGR\ElasticsearchBundle\Document\DocumentInterface;
 use ONGR\ElasticsearchBundle\Document\DocumentTrait;
@@ -22,26 +23,6 @@ use ONGR\ElasticsearchBundle\Document\DocumentTrait;
  */
 class Category implements DocumentInterface
 {
+    use CategoryTrait;
     use DocumentTrait;
-
-    /**
-     * @var bool
-     */
-    private $hiddenField;
-
-    /**
-     * @return bool
-     */
-    public function isHiddenField()
-    {
-        return $this->hiddenField;
-    }
-
-    /**
-     * @param bool $hiddenField
-     */
-    public function setHiddenField($hiddenField)
-    {
-        $this->hiddenField = $hiddenField;
-    }
 }
