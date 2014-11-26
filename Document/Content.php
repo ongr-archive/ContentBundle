@@ -14,6 +14,7 @@ namespace ONGR\ContentBundle\Document;
 use ONGR\ElasticsearchBundle\Annotation as ES;
 use ONGR\ElasticsearchBundle\Document\DocumentInterface;
 use ONGR\ElasticsearchBundle\Document\DocumentTrait;
+use ONGR\RouterBundle\Document\SeoAwareTrait;
 
 /**
  * Content document.
@@ -23,27 +24,74 @@ use ONGR\ElasticsearchBundle\Document\DocumentTrait;
 class Content implements DocumentInterface
 {
     use DocumentTrait;
+    use SeoAwareTrait;
 
     /**
      * @var string
      *
-     * @ES\Property(type="string", name="header")
+     * @ES\Property(type="string", name="slug", index="not_analyzed")
      */
-    private $header;
+    private $slug;
 
     /**
-     * @param string $header
+     * @var string
+     *
+     * @ES\Property(type="string", name="title", index="not_analyzed")
      */
-    public function setHeader($header)
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ES\Property(type="string", name="content")
+     */
+    private $content;
+
+    /**
+     * @return string
+     */
+    public function getSlug()
     {
-        $this->header = $header;
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 
     /**
      * @return string
      */
-    public function getHeader()
+    public function getTitle()
     {
-        return $this->header;
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * @param string $content
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
     }
 }

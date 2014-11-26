@@ -39,25 +39,25 @@ class Product implements DocumentInterface
     private $description;
 
     /**
+     * @var string
+     *
+     * @ES\Property(type="string", name="long_description")
+     */
+    private $longDescription;
+
+    /**
+     * @var string
+     *
+     * @ES\Property(type="string", name="sku")
+     */
+    private $sku;
+
+    /**
      * @var float
      *
      * @ES\Property(type="float", name="price")
      */
     private $price;
-
-    /**
-     * @var string
-     *
-     * @ES\Property(type="geo_point", name="location")
-     */
-    private $location;
-
-    /**
-     * @var UrlObject[]|\Iterator
-     *
-     * @ES\Property(type="object", objectName="ONGRContentBundle:UrlObject", multiple=true, name="url")
-     */
-    private $links;
 
     /**
      * @var ImagesNested[]|\Iterator
@@ -183,5 +183,37 @@ class Product implements DocumentInterface
     public function setCategories($categories)
     {
         $this->categories = $categories;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLongDescription()
+    {
+        return $this->longDescription;
+    }
+
+    /**
+     * @param string $longDescription
+     */
+    public function setLongDescription($longDescription)
+    {
+        $this->longDescription = $longDescription;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSku()
+    {
+        return $this->sku;
+    }
+
+    /**
+     * @param string $sku
+     */
+    public function setSku($sku)
+    {
+        $this->sku = $sku;
     }
 }

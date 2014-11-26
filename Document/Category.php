@@ -19,7 +19,7 @@ use ONGR\ElasticsearchBundle\Document\DocumentTrait;
 /**
  * Category document.
  *
- * @ES\Document
+ * @ES\Document(type="category")
  */
 class Category implements DocumentInterface
 {

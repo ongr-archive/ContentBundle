@@ -11,6 +11,8 @@
 
 namespace ONGR\ContentBundle\Document\Traits;
 
+use ONGR\ContentBundle\Document\Category;
+
 /**
  * Trait used for documents which require Category standard fields.
  *
@@ -18,27 +20,6 @@ namespace ONGR\ContentBundle\Document\Traits;
  */
 trait CategoryTrait
 {
-    /**
-     * @var string
-     *
-     * @ES\Property(type="string", name="root_id")
-     */
-    private $rootId;
-
-    /**
-     * @var int
-     *
-     * @ES\Property(type="integer", name="left")
-     */
-    private $left;
-
-    /**
-     * @var int
-     *
-     * @ES\Property(type="integer", name="right")
-     */
-    private $right;
-
     /**
      * @var string
      *
@@ -54,13 +35,6 @@ trait CategoryTrait
     private $active;
 
     /**
-     * @var bool
-     *
-     * @ES\Property(type="boolean", name="hidden")
-     */
-    private $hidden;
-
-    /**
      * @var string
      *
      * @ES\Property(type="string", name="parent_id")
@@ -73,6 +47,13 @@ trait CategoryTrait
      * @ES\Property(type="integer", name="level")
      */
     private $level;
+
+    /**
+     * @var string
+     *
+     * @ES\Property(type="string", name="title", index="not_analyzed")
+     */
+    private $title;
 
     /**
      * @var bool
@@ -90,7 +71,7 @@ trait CategoryTrait
     private $breadcrumbs;
 
     /**
-     * @var array
+     * @var Category[]|\Iterator
      */
     private $children;
 
@@ -123,7 +104,7 @@ trait CategoryTrait
     }
 
     /**
-     * @param array $children
+     * @param Category[]|\Iterator $children
      */
     public function setChildren($children)
     {
@@ -131,7 +112,7 @@ trait CategoryTrait
     }
 
     /**
-     * @return array
+     * @return Category[]|\Iterator
      */
     public function getChildren()
     {
@@ -151,8 +132,8 @@ trait CategoryTrait
     /**
      * If key is null value is put to the end.
      *
-     * @param mixed  $value
-     * @param string $key
+     * @param Category[]|\Iterator  $value
+     * @param string                $key
      */
     public function setChild($value, $key = null)
     {
@@ -166,7 +147,7 @@ trait CategoryTrait
     /**
      * Adds child to the end of children array.
      *
-     * @param mixed $value
+     * @param Category[]|\Iterator $value
      */
     public function addChild($value)
     {
@@ -237,54 +218,6 @@ trait CategoryTrait
     /**
      * @return string
      */
-    public function getRootId()
-    {
-        return $this->rootId;
-    }
-
-    /**
-     * @param string $rootId
-     */
-    public function setRootId($rootId)
-    {
-        $this->rootId = $rootId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getLeft()
-    {
-        return $this->left;
-    }
-
-    /**
-     * @param int $left
-     */
-    public function setLeft($left)
-    {
-        $this->left = $left;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRight()
-    {
-        return $this->right;
-    }
-
-    /**
-     * @param int $right
-     */
-    public function setRight($right)
-    {
-        $this->right = $right;
-    }
-
-    /**
-     * @return string
-     */
     public function getSort()
     {
         return $this->sort;
@@ -312,38 +245,6 @@ trait CategoryTrait
     public function setActive($active)
     {
         $this->active = $active;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getActive()
-    {
-        return $this->active;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isHidden()
-    {
-        return $this->hidden;
-    }
-
-    /**
-     * @param bool $hidden
-     */
-    public function setHidden($hidden)
-    {
-        $this->hidden = $hidden;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getHidden()
-    {
-        return $this->hidden;
     }
 
     /**

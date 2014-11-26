@@ -37,7 +37,7 @@ class UrlObject
     /**
      * @var CdnObject
      *
-     * @ES\Property(name="cdn", type="object", objectName="ONGRTestingBundle:CdnObject")
+     * @ES\Property(name="cdn", type="object", objectName="ONGRContentBundle:CdnObject")
      */
     private $cdn;
 
