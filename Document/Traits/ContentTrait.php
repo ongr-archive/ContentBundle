@@ -9,23 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace ONGR\ContentBundle\Document;
+namespace ONGR\ContentBundle\Document\Traits;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
-use ONGR\ElasticsearchBundle\Document\DocumentInterface;
-use ONGR\ElasticsearchBundle\Document\DocumentTrait;
-use ONGR\RouterBundle\Document\SeoAwareTrait;
 
 /**
- * Content document.
+ * Trait used for documents which require Content standard fields.
  *
- * @ES\Document(type="content")
+ * @package ONGR\ContentBundle\Document\Traits
  */
-class Content implements DocumentInterface
+trait ContentTrait
 {
-    use DocumentTrait;
-    use SeoAwareTrait;
-
     /**
      * @var string
      *

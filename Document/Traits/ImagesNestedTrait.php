@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace ONGR\ContentBundle\Document;
+namespace ONGR\ContentBundle\Document\Traits;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
 
 /**
- * Images nested document.
+ * Trait used for documents which require ImagesNested standard fields.
  *
- * @ES\Nested
+ * @package ONGR\ContentBundle\Document\Traits
  */
-class ImagesNested
+trait ImagesNestedTrait
 {
     /**
      * @var string

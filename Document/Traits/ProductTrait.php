@@ -9,21 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace ONGR\ContentBundle\Document;
+namespace ONGR\ContentBundle\Document\Traits;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
-use ONGR\ElasticsearchBundle\Document\DocumentInterface;
-use ONGR\ElasticsearchBundle\Document\DocumentTrait;
 
 /**
- * Product document.
+ * Trait used for documents which require Product standard fields.
  *
- * @ES\Document(type="product")
+ * @package ONGR\ContentBundle\Document\Traits
  */
-class Product implements DocumentInterface
+trait ProductTrait
 {
-    use DocumentTrait;
-
     /**
      * @var string
      *
@@ -58,20 +54,6 @@ class Product implements DocumentInterface
      * @ES\Property(type="float", name="price")
      */
     private $price;
-
-    /**
-     * @var ImagesNested[]|\Iterator
-     *
-     * @ES\Property(type="nested", objectName="ONGRContentBundle:ImagesNested", multiple=true, name="images")
-     */
-    private $images;
-
-    /**
-     * @var Category[]|\Iterator
-     *
-     * @ES\Property(type="object", objectName="ONGRContentBundle:Category", multiple=true, name="categories")
-     */
-    private $categories;
 
     /**
      * @return string
@@ -119,70 +101,6 @@ class Product implements DocumentInterface
     public function setPrice($price)
     {
         $this->price = $price;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLocation()
-    {
-        return $this->location;
-    }
-
-    /**
-     * @param string $location
-     */
-    public function setLocation($location)
-    {
-        $this->location = $location;
-    }
-
-    /**
-     * @return \Iterator|UrlObject[]
-     */
-    public function getLinks()
-    {
-        return $this->links;
-    }
-
-    /**
-     * @param \Iterator|UrlObject[] $links
-     */
-    public function setLinks($links)
-    {
-        $this->links = $links;
-    }
-
-    /**
-     * @return \Iterator|ImagesNested[]
-     */
-    public function getImages()
-    {
-        return $this->images;
-    }
-
-    /**
-     * @param \Iterator|ImagesNested[] $images
-     */
-    public function setImages($images)
-    {
-        $this->images = $images;
-    }
-
-    /**
-     * @return \Iterator|Category[]
-     */
-    public function getCategories()
-    {
-        return $this->categories;
-    }
-
-    /**
-     * @param \Iterator|Category[] $categories
-     */
-    public function setCategories($categories)
-    {
-        $this->categories = $categories;
     }
 
     /**

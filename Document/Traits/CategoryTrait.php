@@ -11,12 +11,10 @@
 
 namespace ONGR\ContentBundle\Document\Traits;
 
-use ONGR\ContentBundle\Document\Category;
-
 /**
  * Trait used for documents which require Category standard fields.
  *
- * @package ONGR\ContentBundle\Document
+ * @package ONGR\ContentBundle\Document\Traits
  */
 trait CategoryTrait
 {
@@ -53,7 +51,7 @@ trait CategoryTrait
      *
      * @ES\Property(type="string", name="title", index="not_analyzed")
      */
-    private $title;
+    private $title = 'a';
 
     /**
      * @var bool
@@ -240,6 +238,14 @@ trait CategoryTrait
     }
 
     /**
+     * @return bool
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
      * @param bool $active
      */
     public function setActive($active)
@@ -317,5 +323,21 @@ trait CategoryTrait
     public function getGetParentId()
     {
         return $this->level;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
 }

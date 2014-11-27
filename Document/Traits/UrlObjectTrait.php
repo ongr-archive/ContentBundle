@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace ONGR\ContentBundle\Document;
+namespace ONGR\ContentBundle\Document\Traits;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
 
 /**
- * UrlObject document for testing.
+ * Trait used for documents which require UrlObject standard fields.
  *
- * @ES\Object
+ * @package ONGR\ContentBundle\Document\Traits
  */
-class UrlObject
+trait UrlObjectTrait
 {
     /**
      * @var string
@@ -33,13 +33,6 @@ class UrlObject
      * @ES\Property(name="key", type="string", index="no")
      */
     private $urlKey;
-
-    /**
-     * @var CdnObject
-     *
-     * @ES\Property(name="cdn", type="object", objectName="ONGRContentBundle:CdnObject")
-     */
-    private $cdn;
 
     /**
      * @return string
@@ -71,21 +64,5 @@ class UrlObject
     public function getUrlKey()
     {
         return $this->urlKey;
-    }
-
-    /**
-     * @return CdnObject
-     */
-    public function getCdn()
-    {
-        return $this->cdn;
-    }
-
-    /**
-     * @param CdnObject $cdn
-     */
-    public function setCdn($cdn)
-    {
-        $this->cdn = $cdn;
     }
 }

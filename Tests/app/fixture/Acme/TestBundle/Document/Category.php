@@ -29,9 +29,56 @@ class Category implements DocumentInterface
     use SeoAwareTrait;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ES\Property(type="string", name="title")
+     * @ES\Property(type="integer", name="left")
      */
-    public $title;
+    private $left;
+
+    /**
+     * @var bool
+     *
+     * @ES\Property(type="boolean", name="hidden")
+     */
+    private $hidden;
+
+    /**
+     * @return int
+     */
+    public function getLeft()
+    {
+        return $this->left;
+    }
+
+    /**
+     * @param int $left
+     */
+    public function setLeft($left)
+    {
+        $this->left = $left;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isHidden()
+    {
+        return $this->hidden;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHidden()
+    {
+        return $this->hidden;
+    }
+
+    /**
+     * @param bool $hidden
+     */
+    public function setHidden($hidden)
+    {
+        $this->hidden = $hidden;
+    }
 }

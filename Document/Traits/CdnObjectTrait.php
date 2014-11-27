@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace ONGR\ContentBundle\Document;
+namespace ONGR\ContentBundle\Document\Traits;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
 
 /**
- * CdnObject document.
+ * Trait used for documents which require CdnObject standard fields.
  *
- * @ES\Object
+ * @package ONGR\ContentBundle\Document\Traits
  */
-class CdnObject
+trait CdnObjectTrait
 {
     /**
      * @var string
