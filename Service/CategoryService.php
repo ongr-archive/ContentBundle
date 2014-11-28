@@ -238,13 +238,13 @@ class CategoryService
      */
     public function sortNodes($a, $b)
     {
-        if ($a->sort < $b->sort) {
+        if ($a->getSort() < $b->getSort()) {
             return -1;
-        } elseif ($a->sort > $b->sort) {
+        } elseif ($a->getSort() > $b->getSort()) {
             return 1;
-        } elseif ($a->left < $b->left) {
+        } elseif ($a->getLeft() < $b->getLeft()) {
             return -1;
-        } elseif ($a->left > $b->left) {
+        } elseif ($a->getLeft() > $b->getLeft()) {
             return 1;
         }
 

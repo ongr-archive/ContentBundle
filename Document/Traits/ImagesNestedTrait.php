@@ -42,13 +42,6 @@ trait ImagesNestedTrait
     private $description;
 
     /**
-     * @var object
-     *
-     * @ES\Property(name="cdn", type="object", objectName="ONGRContentBundle:CdnObject")
-     */
-    private $cdn;
-
-    /**
      * @param string $url
      */
     public function setUrl($url)
@@ -61,7 +54,7 @@ trait ImagesNestedTrait
      */
     public function getUrl()
     {
-        return $this->title;
+        return $this->url;
     }
 
     /**
@@ -94,21 +87,5 @@ trait ImagesNestedTrait
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * @param object $cdn
-     */
-    public function setCdn($cdn)
-    {
-        $this->cdn = $cdn;
-    }
-
-    /**
-     * @return object
-     */
-    public function getCdn()
-    {
-        return $this->cdn;
     }
 }

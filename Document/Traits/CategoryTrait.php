@@ -51,7 +51,28 @@ trait CategoryTrait
      *
      * @ES\Property(type="string", name="title", index="not_analyzed")
      */
-    private $title = 'a';
+    private $title;
+
+    /**
+     * @var bool
+     *
+     * @ES\Property(type="boolean", name="hidden")
+     */
+    private $hidden;
+
+    /**
+     * @var int
+     *
+     * @ES\Property(type="integer", name="left")
+     */
+    private $left;
+
+    /**
+     * @var int
+     *
+     * @ES\Property(type="integer", name="right")
+     */
+    private $right;
 
     /**
      * @var bool
@@ -69,7 +90,7 @@ trait CategoryTrait
     private $breadcrumbs;
 
     /**
-     * @var Category[]|\Iterator
+     * @var CategoryTrait[]|\Iterator
      */
     private $children;
 
@@ -92,7 +113,7 @@ trait CategoryTrait
     {
         if (is_array($this->children) && count($this->children)) {
             foreach ($this->children as $child) {
-                if (!$child->hidden) {
+                if (!$child->getHidden()) {
                     return true;
                 }
             }
@@ -102,7 +123,7 @@ trait CategoryTrait
     }
 
     /**
-     * @param Category[]|\Iterator $children
+     * @param CategoryTrait[]|\Iterator $children
      */
     public function setChildren($children)
     {
@@ -110,7 +131,7 @@ trait CategoryTrait
     }
 
     /**
-     * @return Category[]|\Iterator
+     * @return CategoryTrait[]|\Iterator
      */
     public function getChildren()
     {
@@ -130,8 +151,8 @@ trait CategoryTrait
     /**
      * If key is null value is put to the end.
      *
-     * @param Category[]|\Iterator  $value
-     * @param string                $key
+     * @param CategoryTrait[]|\Iterator  $value
+     * @param string                     $key
      */
     public function setChild($value, $key = null)
     {
@@ -145,7 +166,7 @@ trait CategoryTrait
     /**
      * Adds child to the end of children array.
      *
-     * @param Category[]|\Iterator $value
+     * @param CategoryTrait[]|\Iterator $value
      */
     public function addChild($value)
     {
@@ -320,14 +341,6 @@ trait CategoryTrait
     /**
      * @return string
      */
-    public function getGetParentId()
-    {
-        return $this->level;
-    }
-
-    /**
-     * @return string
-     */
     public function getTitle()
     {
         return $this->title;
@@ -339,5 +352,61 @@ trait CategoryTrait
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isHidden()
+    {
+        return $this->hidden;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHidden()
+    {
+        return $this->hidden;
+    }
+
+    /**
+     * @param bool $hidden
+     */
+    public function setHidden($hidden)
+    {
+        $this->hidden = $hidden;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLeft()
+    {
+        return $this->left;
+    }
+
+    /**
+     * @param int $left
+     */
+    public function setLeft($left)
+    {
+        $this->left = $left;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRight()
+    {
+        return $this->right;
+    }
+
+    /**
+     * @param int $right
+     */
+    public function setRight($right)
+    {
+        $this->right = $right;
     }
 }
