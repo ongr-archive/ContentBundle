@@ -30,95 +30,95 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'category' => [
                     [
                         '_id' => 'cat1',
-                        'active' => true,
+                        'is_active' => true,
                         'sort' => 1,
                         'left' => 2,
                         'parent_id' => 'oxrootid',
                         'level' => 1,
-                        'hidden' => false,
+                        'is_hidden' => false,
                     ],
                     [
                         '_id' => 'cat2',
-                        'active' => true,
+                        'is_active' => true,
                         'sort' => 2,
                         'left' => 8,
                         'parent_id' => 'oxrootid',
                         'level' => 1,
-                        'hidden' => false,
+                        'is_hidden' => false,
                     ],
                     [
                         '_id' => 'cat3',
-                        'active' => true,
+                        'is_active' => true,
                         'sort' => 1,
                         'left' => 1,
                         'parent_id' => 'oxrootid',
                         'level' => 1,
-                        'current' => true,
-                        'expanded' => true,
-                        'hidden' => false,
+                        'is_current' => true,
+                        'is_expanded' => true,
+                        'is_hidden' => false,
                     ],
                     [
                         '_id' => 'cat4',
-                        'active' => true,
+                        'is_active' => true,
                         'sort' => 1,
                         'left' => 3,
                         'parent_id' => 'oxrootid',
                         'level' => 1,
-                        'hidden' => false,
+                        'is_hidden' => false,
                     ],
                     [
                         '_id' => 'cat41',
-                        'active' => true,
+                        'is_active' => true,
                         'sort' => 1,
                         'left' => 4,
                         'parent_id' => 'cat4',
                         'level' => 2,
-                        'hidden' => false,
+                        'is_hidden' => false,
                     ],
                     [
                         '_id' => 'cat42',
-                        'active' => true,
+                        'is_active' => true,
                         'sort' => 1,
                         'left' => 5,
                         'parent_id' => 'cat4',
                         'level' => 2,
-                        'hidden' => false,
+                        'is_hidden' => false,
                     ],
                     [
                         '_id' => 'cat421',
-                        'active' => true,
+                        'is_active' => true,
                         'sort' => 2,
                         'left' => 7,
                         'parent_id' => 'cat42',
                         'level' => 3,
-                        'hidden' => false,
+                        'is_hidden' => false,
                     ],
                     [
                         '_id' => 'cat422',
-                        'active' => true,
+                        'is_active' => true,
                         'sort' => 1,
                         'left' => 6,
                         'parent_id' => 'cat42',
                         'level' => 3,
-                        'hidden' => false,
+                        'is_hidden' => false,
                     ],
                     [
                         '_id' => 'cat5',
-                        'active' => true,
+                        'is_active' => true,
                         'sort' => 1,
                         'left' => 3,
                         'parent_id' => 'oxrootid',
                         'level' => 1,
-                        'hidden' => false,
+                        'is_hidden' => false,
                     ],
                     [
                         '_id' => 'cat6',
-                        'active' => true,
+                        'is_active' => true,
                         'sort' => 1,
                         'left' => 9,
                         'parent_id' => 'oxrootid',
                         'level' => 1,
-                        'hidden' => false,
+                        'is_hidden' => false,
                     ],
                 ],
             ],
@@ -173,16 +173,16 @@ class CategoryServiceTest extends ElasticsearchTestCase
     {
         $cat = new Category();
         $cat->id = $category['id'];
-        $cat->active = $category['active'];
-        $cat->sort = $category['sort'];
-        $cat->left = $category['left'];
-        $cat->parentId = $category['parent_id'];
+        $cat->setIsActive($category['is_active']);
+        $cat->setSort($category['sort']);
+        $cat->setLeft($category['left']);
+        $cat->setParentId($category['parent_id']);
         $cat->setLevel($category['level']);
-        if (isset($category['hidden'])) {
-            $cat->hidden = $category['hidden'];
+        if (isset($category['is_hidden'])) {
+            $cat->setIsHidden($category['is_hidden']);
         }
-        isset($category['current']) && $cat->setCurrent($category['current']);
-        isset($category['expanded']) && $cat->setExpanded($category['expanded']);
+        isset($category['is_current']) && $cat->setIsCurrent($category['is_current']);
+        isset($category['is_expanded']) && $cat->setIsExpanded($category['is_expanded']);
 
         return $cat;
     }
@@ -197,95 +197,95 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $catData = [
             [
                 'id' => 'cat1',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 1,
                 'left' => 2,
                 'parent_id' => 'oxrootid',
                 'level' => 1,
-                'hidden' => false,
+                'is_hidden' => false,
             ],
             [
                 'id' => 'cat2',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 2,
                 'left' => 8,
                 'parent_id' => 'oxrootid',
                 'level' => 1,
-                'hidden' => false,
+                'is_hidden' => false,
             ],
             [
                 'id' => 'cat3',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 1,
                 'left' => 1,
                 'parent_id' => 'oxrootid',
                 'level' => 1,
-                'current' => true,
-                'expanded' => true,
-                'hidden' => false,
+                'is_current' => true,
+                'is_expanded' => true,
+                'is_hidden' => false,
             ],
             [
                 'id' => 'cat4',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 1,
                 'left' => 3,
                 'parent_id' => 'oxrootid',
                 'level' => 1,
-                'hidden' => false,
+                'is_hidden' => false,
             ],
             [
                 'id' => 'cat41',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 1,
                 'left' => 4,
                 'parent_id' => 'cat4',
                 'level' => 2,
-                'hidden' => false,
+                'is_hidden' => false,
             ],
             [
                 'id' => 'cat42',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 1,
                 'left' => 5,
                 'parent_id' => 'cat4',
                 'level' => 2,
-                'hidden' => false,
+                'is_hidden' => false,
             ],
             [
                 'id' => 'cat421',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 2,
                 'left' => 7,
                 'parent_id' => 'cat42',
                 'level' => 3,
-                'hidden' => false,
+                'is_hidden' => false,
             ],
             [
                 'id' => 'cat422',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 1,
                 'left' => 6,
                 'parent_id' => 'cat42',
                 'level' => 3,
-                'hidden' => false,
+                'is_hidden' => false,
             ],
             [
                 'id' => 'cat5',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 1,
                 'left' => 3,
                 'parent_id' => 'oxrootid',
                 'level' => 1,
-                'hidden' => false,
+                'is_hidden' => false,
             ],
             [
                 'id' => 'cat6',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 1,
                 'left' => 9,
                 'parent_id' => 'oxrootid',
                 'level' => 1,
-                'hidden' => false,
+                'is_hidden' => false,
             ],
         ];
 
@@ -334,7 +334,8 @@ class CategoryServiceTest extends ElasticsearchTestCase
             'cat2' => clone $data['cat2'],
         ];
 
-        $this->assertEquals($expectedResult, $result->getArrayCopy());
+        $gotResult = $result->getArrayCopy();
+        $this->assertEquals($expectedResult, $gotResult);
     }
 
     /**
@@ -356,9 +357,9 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $service->getTree();
 
         $expected = $data['cat42'];
-        $expected->setCurrent(true);
-        $expected->setExpanded(true);
-        $expected->getParent()->setExpanded(true);
+        $expected->setIsCurrent(true);
+        $expected->setIsExpanded(true);
+        $expected->getParent()->setIsExpanded(true);
 
         $leaf = $service->getCurrentCategoryDocument();
         $this->assertEquals($expected, $leaf);
@@ -375,7 +376,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $cat1 = $this->buildCategory(
             [
                 'id' => 'cat1',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 1,
                 'left' => 2,
                 'parent_id' => 'oxrootid',
@@ -402,7 +403,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $cat2 = $this->buildCategory(
             [
                 'id' => 'cat2',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 2,
                 'left' => 8,
                 'parent_id' => 'oxrootid',
@@ -413,20 +414,20 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $cat3 = $this->buildCategory(
             [
                 'id' => 'cat3',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 1,
                 'left' => 1,
                 'parent_id' => 'oxrootid',
                 'level' => 1,
-                'current' => true,
-                'expanded' => true,
+                'is_current' => true,
+                'is_expanded' => true,
             ]
         );
 
         $cat4 = $this->buildCategory(
             [
                 'id' => 'cat4',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 1,
                 'left' => 3,
                 'parent_id' => 'oxrootid',
@@ -437,7 +438,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $cat41 = $this->buildCategory(
             [
                 'id' => 'cat41',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 1,
                 'left' => 4,
                 'parent_id' => 'cat4',
@@ -448,7 +449,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $cat42 = $this->buildCategory(
             [
                 'id' => 'cat42',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 1,
                 'left' => 5,
                 'parent_id' => 'cat4',
@@ -459,7 +460,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $cat421 = $this->buildCategory(
             [
                 'id' => 'cat421',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 2,
                 'left' => 7,
                 'parent_id' => 'cat42',
@@ -543,21 +544,21 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $rawData = [
             [
                 'id' => 'cat1',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 1,
                 'left' => 2,
                 'parent_id' => 'oxrootid',
                 'level' => 1,
-                'hidden' => false,
+                'is_hidden' => false,
             ],
             [
                 'id' => 'cat2',
-                'active' => true,
+                'is_active' => true,
                 'sort' => 2,
                 'left' => 8,
                 'parent_id' => 'oxrootid',
                 'level' => 1,
-                'hidden' => false,
+                'is_hidden' => false,
             ],
         ];
 

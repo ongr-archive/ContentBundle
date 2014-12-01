@@ -15,8 +15,6 @@ use ONGR\ElasticsearchBundle\Annotation as ES;
 
 /**
  * Trait used for documents which require Content standard fields.
- *
- * @package ONGR\ContentBundle\Document\Traits
  */
 trait ContentTrait
 {

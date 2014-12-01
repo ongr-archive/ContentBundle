@@ -74,9 +74,9 @@ class CategoryService
         $search = $this->repository->createSearch();
         $search->setSize($this->limit);
         $search->addSort(new Sort('left', Sort::ORDER_ASC));
-        $search->addQuery(new TermQuery('active', true), 'must');
+        $search->addQuery(new TermQuery('is_active', true), 'must');
         if (!$this->loadHiddenCategories) {
-            $search->addQuery(new TermQuery('hidden', 0), 'must');
+            $search->addQuery(new TermQuery('is_hidden', 0), 'must');
         }
 
         return $search;
@@ -141,7 +141,7 @@ class CategoryService
     private function buildNode($node, $references, $tree, $maxLevel)
     {
         if ($node->id == $this->getCurrentCategoryId()) {
-            $node->setCurrent(true);
+            $node->setIsCurrent(true);
             $this->currentLeaf = $node;
         }
 
@@ -165,7 +165,7 @@ class CategoryService
 
         if ($id) {
             while (isset($references[$id])) {
-                $references[$id]->setExpanded(true);
+                $references[$id]->setIsExpanded(true);
                 $id = $references[$id]->getParentId();
             }
         }

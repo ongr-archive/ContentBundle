@@ -19,7 +19,6 @@ use ONGR\ElasticsearchBundle\ORM\Manager;
  */
 class ContentExtensionTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * Test getName function.
      */

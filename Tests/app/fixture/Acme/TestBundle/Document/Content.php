@@ -80,14 +80,14 @@ class Content implements DocumentInterface
     /**
      * @var bool
      *
-     * @ES\Property(type="boolean", name="hidden")
+     * @ES\Property(type="boolean", name="is_hidden")
      */
-    private $hidden;
+    private $isHidden;
 
     /**
      * @var bool
      */
-    private $selected;
+    private $isSelected;
 
     /**
      * Assigns multiple fields from array, just for test.
@@ -122,23 +122,23 @@ class Content implements DocumentInterface
      */
     public function isHidden()
     {
-        return $this->hidden;
+        return $this->isHidden;
     }
 
     /**
      * @return bool
      */
-    public function getHidden()
+    public function getIsHidden()
     {
-        return $this->hidden;
+        return $this->isHidden();
     }
 
     /**
-     * @param bool $hidden
+     * @param bool $state
      */
-    public function setHidden($hidden)
+    public function setIsHidden($state)
     {
-        $this->hidden = $hidden;
+        $this->isHidden = $state;
     }
 
     /**
@@ -210,23 +210,23 @@ class Content implements DocumentInterface
      */
     public function isSelected()
     {
-        return $this->selected;
+        return $this->isSelected;
     }
 
     /**
      * @return bool
      */
-    public function getSelected()
+    public function getIsSelected()
     {
-        return $this->selected;
+        return $this->isSelected();
     }
 
     /**
-     * @param bool $selected
+     * @param bool $state
      */
-    public function setSelected($selected)
+    public function setIsSelected($state)
     {
-        $this->selected = $selected;
+        $this->isSelected = $state;
     }
 
     /**

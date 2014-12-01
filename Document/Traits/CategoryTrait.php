@@ -13,8 +13,6 @@ namespace ONGR\ContentBundle\Document\Traits;
 
 /**
  * Trait used for documents which require Category standard fields.
- *
- * @package ONGR\ContentBundle\Document\Traits
  */
 trait CategoryTrait
 {
@@ -28,9 +26,9 @@ trait CategoryTrait
     /**
      * @var bool
      *
-     * @ES\Property(type="boolean", name="active")
+     * @ES\Property(type="boolean", name="is_active")
      */
-    private $active;
+    private $isActive;
 
     /**
      * @var string
@@ -56,9 +54,9 @@ trait CategoryTrait
     /**
      * @var bool
      *
-     * @ES\Property(type="boolean", name="hidden")
+     * @ES\Property(type="boolean", name="is_hidden")
      */
-    private $hidden;
+    private $isHidden;
 
     /**
      * @var int
@@ -77,7 +75,7 @@ trait CategoryTrait
     /**
      * @var bool
      */
-    private $expanded;
+    private $isExpanded;
 
     /**
      * @var bool
@@ -113,7 +111,7 @@ trait CategoryTrait
     {
         if (is_array($this->children) && count($this->children)) {
             foreach ($this->children as $child) {
-                if (!$child->getHidden()) {
+                if (!$child->isHidden()) {
                     return true;
                 }
             }
@@ -151,8 +149,8 @@ trait CategoryTrait
     /**
      * If key is null value is put to the end.
      *
-     * @param CategoryTrait[]|\Iterator  $value
-     * @param string                     $key
+     * @param CategoryTrait[]|\Iterator $value
+     * @param string                    $key
      */
     public function setChild($value, $key = null)
     {
@@ -255,23 +253,23 @@ trait CategoryTrait
      */
     public function isActive()
     {
-        return $this->active;
+        return $this->isActive;
     }
 
     /**
      * @return bool
      */
-    public function getActive()
+    public function getIsActive()
     {
-        return $this->active;
+        return $this->isActive();
     }
 
     /**
-     * @param bool $active
+     * @param bool $state
      */
-    public function setActive($active)
+    public function setIsActive($state)
     {
-        $this->active = $active;
+        $this->isActive = $state;
     }
 
     /**
@@ -293,7 +291,7 @@ trait CategoryTrait
     /**
      * @param bool $current
      */
-    public function setCurrent($current)
+    public function setIsCurrent($current)
     {
         $this->current = $current;
     }
@@ -301,25 +299,41 @@ trait CategoryTrait
     /**
      * @return bool
      */
-    public function getCurrent()
+    public function getIsCurrent()
     {
-        return $this->current;
-    }
-
-    /**
-     * @param bool $expanded
-     */
-    public function setExpanded($expanded)
-    {
-        $this->expanded = $expanded;
+        return $this->isCurrent();
     }
 
     /**
      * @return bool
      */
-    public function getExpanded()
+    public function isCurrent()
     {
-        return $this->expanded;
+        return $this->current;
+    }
+
+    /**
+     * @param bool $state
+     */
+    public function setIsExpanded($state)
+    {
+        $this->isExpanded = $state;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsExpanded()
+    {
+        return $this->isExpanded();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isExpanded()
+    {
+        return $this->isExpanded;
     }
 
     /**
@@ -359,23 +373,23 @@ trait CategoryTrait
      */
     public function isHidden()
     {
-        return $this->hidden;
+        return $this->isHidden;
     }
 
     /**
      * @return bool
      */
-    public function getHidden()
+    public function getIsHidden()
     {
-        return $this->hidden;
+        return $this->isHidden();
     }
 
     /**
-     * @param bool $hidden
+     * @param bool $state
      */
-    public function setHidden($hidden)
+    public function setIsHidden($state)
     {
-        $this->hidden = $hidden;
+        $this->isHidden = $state;
     }
 
     /**
