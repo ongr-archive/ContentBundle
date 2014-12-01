@@ -25,6 +25,8 @@ use ONGR\ElasticsearchBundle\Result\DocumentIterator;
  */
 class CategoryService
 {
+    const ROOT_CATEGORY_ID = 'category_root_id';
+
     /**
      * @var Repository
      */
@@ -147,7 +149,7 @@ class CategoryService
 
         $references[$node->id] = $node;
 
-        if ($node->getParentId() == 'oxrootid') {
+        if ($node->getParentId() == self::ROOT_CATEGORY_ID) {
             $this->buildRootNode($node, $tree, 1);
         } else {
             $this->buildChildNode($node, $references, $maxLevel);
@@ -372,5 +374,13 @@ class CategoryService
     protected function setLoadHiddenCategories($param)
     {
         $this->loadHiddenCategories = $param;
+    }
+
+    /**
+     * @param string $categoryRootId
+     */
+    public function setCategoryRootId($categoryRootId)
+    {
+        $this->categoryRootId = $categoryRootId;
     }
 }
