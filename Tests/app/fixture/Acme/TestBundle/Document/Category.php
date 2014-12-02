@@ -14,7 +14,7 @@ namespace ONGR\ContentBundle\Tests\app\fixture\Acme\TestBundle\Document;
 use ONGR\ElasticsearchBundle\Annotation as ES;
 use ONGR\ElasticsearchBundle\Document\DocumentInterface;
 use ONGR\ElasticsearchBundle\Document\DocumentTrait;
-use ONGR\ContentBundle\Document\CategoryTrait;
+use ONGR\ContentBundle\Document\Traits\CategoryTrait;
 use ONGR\RouterBundle\Document\SeoAwareTrait;
 
 /**
@@ -27,11 +27,4 @@ class Category implements DocumentInterface
     use DocumentTrait;
     use CategoryTrait;
     use SeoAwareTrait;
-
-    /**
-     * @var string
-     *
-     * @ES\Property(type="string", name="title")
-     */
-    public $title;
 }

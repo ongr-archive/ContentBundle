@@ -26,16 +26,12 @@ class CategoryExtension extends \Twig_Extension
     private $categoryService;
 
     /**
-     * Max category level to render to.
-     *
-     * @var int
+     * @var int Max category level to render to.
      */
     private $maxLevel = null;
 
     /**
-     * Category template for render.
-     *
-     * @var string
+     * @var string Category template for render.
      */
     private $template = null;
 

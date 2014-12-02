@@ -11,8 +11,9 @@
 
 namespace ONGR\ContentBundle\Service;
 
-use ONGR\ContentBundle\Document\CategoryTrait;
+use ONGR\ContentBundle\Document\Traits\CategoryTrait;
 use ONGR\ElasticsearchBundle\Document\DocumentInterface;
+use ONGR\ElasticsearchBundle\Document\DocumentTrait;
 use ONGR\ElasticsearchBundle\DSL\Query\TermQuery;
 use ONGR\ElasticsearchBundle\DSL\Search;
 use ONGR\ElasticsearchBundle\DSL\Sort\Sort;
@@ -24,6 +25,8 @@ use ONGR\ElasticsearchBundle\Result\DocumentIterator;
  */
 class CategoryService
 {
+    const ROOT_CATEGORY_ID = 'category_root_id';
+
     /**
      * @var Repository
      */
@@ -73,9 +76,9 @@ class CategoryService
         $search = $this->repository->createSearch();
         $search->setSize($this->limit);
         $search->addSort(new Sort('left', Sort::ORDER_ASC));
-        $search->addQuery(new TermQuery('active', true), 'must');
+        $search->addQuery(new TermQuery('is_active', true), 'must');
         if (!$this->loadHiddenCategories) {
-            $search->addQuery(new TermQuery('hidden', 0), 'must');
+            $search->addQuery(new TermQuery('is_hidden', 0), 'must');
         }
 
         return $search;
@@ -84,20 +87,20 @@ class CategoryService
     /**
      * Builds a child node.
      *
-     * @param CategoryTrait  $node
-     * @param \ArrayIterator $references
-     * @param int            $maxLevel
+     * @param CategoryTrait|DocumentTrait $node
+     * @param \ArrayIterator              $references
+     * @param int                         $maxLevel
      */
     private function buildChildNode($node, $references, $maxLevel)
     {
-        if (isset($references[$node->parentId])) {
-            $level = $references[$node->parentId]->getLevel() + 1;
+        if (isset($references[$node->getParentId()])) {
+            $level = $references[$node->getParentId()]->getLevel() + 1;
 
             // Check if max level is not reached or not set at all.
             if ($maxLevel == 0 || $level <= $maxLevel) {
                 $node->setLevel($level);
-                $node->setParent($references[$node->parentId]);
-                $references[$node->parentId]->setChild($node->id, $node);
+                $node->setParent($references[$node->getParentId()]);
+                $references[$node->getParentId()]->setChild($node, $node->id);
             }
         }
     }
@@ -119,9 +122,9 @@ class CategoryService
     /**
      * Builds a root node.
      *
-     * @param CategoryTrait  $node
-     * @param \ArrayIterator $tree
-     * @param int            $level
+     * @param CategoryTrait|DocumentTrait $node
+     * @param \ArrayIterator              $tree
+     * @param int                         $level
      */
     private function buildRootNode($node, $tree, $level)
     {
@@ -132,10 +135,10 @@ class CategoryService
     /**
      * Builds a node. Sets node parameters.
      *
-     * @param CategoryTrait  $node
-     * @param \ArrayIterator $references
-     * @param \ArrayIterator $tree
-     * @param int            $maxLevel
+     * @param CategoryTrait|DocumentTrait $node
+     * @param \ArrayIterator              $references
+     * @param \ArrayIterator              $tree
+     * @param int                         $maxLevel
      */
     private function buildNode($node, $references, $tree, $maxLevel)
     {
@@ -146,7 +149,7 @@ class CategoryService
 
         $references[$node->id] = $node;
 
-        if ($node->parentId == 'oxrootid') {
+        if ($node->getParentId() == self::ROOT_CATEGORY_ID) {
             $this->buildRootNode($node, $tree, 1);
         } else {
             $this->buildChildNode($node, $references, $maxLevel);
@@ -165,7 +168,7 @@ class CategoryService
         if ($id) {
             while (isset($references[$id])) {
                 $references[$id]->setExpanded(true);
-                $id = $references[$id]->parentId;
+                $id = $references[$id]->getParentId();
             }
         }
     }
@@ -185,7 +188,7 @@ class CategoryService
 
         /** @var DocumentIterator $dataSet */
         foreach ($dataSet as $node) {
-            if ($node->active) {
+            if ($node->isActive()) {
                 $this->buildNode($node, $references, $tree, $maxLevel);
             }
         }
@@ -204,7 +207,7 @@ class CategoryService
      */
     protected function sortChildTree(&$tree)
     {
-        /** @var CategoryTrait $node */
+        /** @var CategoryTrait|DocumentTrait $node */
         if (is_array($tree)) {
             uasort($tree, [$this, 'sortNodes']);
             foreach ($tree as $node) {
@@ -230,20 +233,20 @@ class CategoryService
     /**
      * Sorts nodes by field sort if value equal then by field left.
      *
-     * @param CategoryTrait $a
-     * @param CategoryTrait $b
+     * @param CategoryTrait|DocumentTrait $a
+     * @param CategoryTrait|DocumentTrait $b
      *
      * @return int
      */
     public function sortNodes($a, $b)
     {
-        if ($a->sort < $b->sort) {
+        if ($a->getSort() < $b->getSort()) {
             return -1;
-        } elseif ($a->sort > $b->sort) {
+        } elseif ($a->getSort() > $b->getSort()) {
             return 1;
-        } elseif ($a->left < $b->left) {
+        } elseif ($a->getLeft() < $b->getLeft()) {
             return -1;
-        } elseif ($a->left > $b->left) {
+        } elseif ($a->getLeft() > $b->getLeft()) {
             return 1;
         }
 
@@ -301,7 +304,7 @@ class CategoryService
      */
     protected function findPartialTree($tree, $categoryId)
     {
-        /** @var CategoryTrait $node */
+        /** @var CategoryTrait|DocumentTrait $node */
         foreach ($tree as $node) {
             if ($node->id == $categoryId) {
                 return [$node];
@@ -371,5 +374,13 @@ class CategoryService
     protected function setLoadHiddenCategories($param)
     {
         $this->loadHiddenCategories = $param;
+    }
+
+    /**
+     * @param string $categoryRootId
+     */
+    public function setCategoryRootId($categoryRootId)
+    {
+        $this->categoryRootId = $categoryRootId;
     }
 }
