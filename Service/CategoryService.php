@@ -100,7 +100,7 @@ class CategoryService
             if ($maxLevel == 0 || $level <= $maxLevel) {
                 $node->setLevel($level);
                 $node->setParent($references[$node->getParentId()]);
-                $references[$node->getParentId()]->setChild($node, $node->id);
+                $references[$node->getParentId()]->setChild($node, $node->getId());
             }
         }
     }
@@ -129,7 +129,7 @@ class CategoryService
     private function buildRootNode($node, $tree, $level)
     {
         $node->setLevel($level);
-        $tree[$node->id] = $node;
+        $tree[$node->getId()] = $node;
     }
 
     /**
@@ -142,12 +142,12 @@ class CategoryService
      */
     private function buildNode($node, $references, $tree, $maxLevel)
     {
-        if ($node->id == $this->getCurrentCategoryId()) {
+        if ($node->getId() == $this->getCurrentCategoryId()) {
             $node->setCurrent(true);
             $this->currentLeaf = $node;
         }
 
-        $references[$node->id] = $node;
+        $references[$node->getId()] = $node;
 
         if ($node->getParentId() == self::ROOT_CATEGORY_ID) {
             $this->buildRootNode($node, $tree, 1);
@@ -306,7 +306,7 @@ class CategoryService
     {
         /** @var CategoryTrait|DocumentTrait $node */
         foreach ($tree as $node) {
-            if ($node->id == $categoryId) {
+            if ($node->getId() == $categoryId) {
                 return [$node];
             }
             if ($node->getChildren()) {

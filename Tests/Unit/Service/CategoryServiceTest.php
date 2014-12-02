@@ -172,7 +172,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
     protected function buildCategory($category)
     {
         $cat = new Category();
-        $cat->id = $category['id'];
+        $cat->setId($category['id']);
         $cat->setActive($category['is_active']);
         $cat->setSort($category['sort']);
         $cat->setLeft($category['left']);
@@ -359,6 +359,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $expected = $data['cat42'];
         $expected->setCurrent(true);
         $expected->setExpanded(true);
+
         $expected->getParent()->setExpanded(true);
 
         $leaf = $service->getCurrentCategoryDocument();
