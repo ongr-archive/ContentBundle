@@ -72,9 +72,9 @@ class CategoryTraitTest extends \PHPUnit_Framework_TestCase
     {
         /** @var CategoryTrait $cat */
         $cat = $this->getMockForTrait('ONGR\\ContentBundle\\Document\\Traits\\CategoryTrait');
-        $cat->setIsActive($data['active']);
+        $cat->setActive($data['active']);
         $this->assertEquals($data['active'], $cat->isActive());
-        $this->assertEquals($data['active'], $cat->getIsActive());
+        $this->assertEquals($data['active'], $cat->getActive());
 
         foreach ($data['breadcrumbs'] as $key => $value) {
             $cat->setBreadcrumb($value, $key);
@@ -96,12 +96,12 @@ class CategoryTraitTest extends \PHPUnit_Framework_TestCase
         $cat->setParentId($data['parent_id']);
         $this->assertEquals($data['parent_id'], $cat->getParentId());
 
-        $cat->setIsCurrent($data['current']);
-        $this->assertEquals($data['current'], $cat->getIsCurrent());
+        $cat->setCurrent($data['current']);
+        $this->assertEquals($data['current'], $cat->getCurrent());
         $this->assertEquals($data['current'], $cat->isCurrent());
 
-        $cat->setIsExpanded($data['expanded']);
-        $this->assertEquals($data['expanded'], $cat->getIsExpanded());
+        $cat->setExpanded($data['expanded']);
+        $this->assertEquals($data['expanded'], $cat->getExpanded());
 
         $cat->setSort($data['sort']);
         $this->assertEquals($data['sort'], $cat->getSort());
@@ -117,16 +117,16 @@ class CategoryTraitTest extends \PHPUnit_Framework_TestCase
 
         /** @var CategoryTrait $cat2 */
         $cat2 = $this->getMockForTrait('ONGR\\ContentBundle\\Document\\Traits\\CategoryTrait');
-        $cat2->setIsHidden(false);
+        $cat2->setHidden(false);
         $cat->addChild($cat2);
         $this->assertEquals(true, $cat->hasVisibleChildren());
         $this->assertEquals($cat2, $cat->getChild('0'));
         $this->assertEquals(false, $cat2->isHidden());
-        $this->assertEquals(false, $cat2->getIsHidden());
+        $this->assertEquals(false, $cat2->getHidden());
 
         /** @var CategoryTrait $cat3 */
         $cat3 = $this->getMockForTrait('ONGR\\ContentBundle\\Document\\Traits\\CategoryTrait');
-        $cat3->setIsHidden(true);
+        $cat3->setHidden(true);
         $cat2->addChild($cat3);
         $this->assertEquals(false, $cat2->hasVisibleChildren());
     }

@@ -143,7 +143,7 @@ class CategoryService
     private function buildNode($node, $references, $tree, $maxLevel)
     {
         if ($node->id == $this->getCurrentCategoryId()) {
-            $node->setIsCurrent(true);
+            $node->setCurrent(true);
             $this->currentLeaf = $node;
         }
 
@@ -167,7 +167,7 @@ class CategoryService
 
         if ($id) {
             while (isset($references[$id])) {
-                $references[$id]->setIsExpanded(true);
+                $references[$id]->setExpanded(true);
                 $id = $references[$id]->getParentId();
             }
         }

@@ -28,7 +28,7 @@ trait CategoryTrait
      *
      * @ES\Property(type="boolean", name="is_active")
      */
-    private $isActive;
+    private $active;
 
     /**
      * @var string
@@ -56,7 +56,7 @@ trait CategoryTrait
      *
      * @ES\Property(type="boolean", name="is_hidden")
      */
-    private $isHidden;
+    private $hidden;
 
     /**
      * @var int
@@ -75,7 +75,7 @@ trait CategoryTrait
     /**
      * @var bool
      */
-    private $isExpanded;
+    private $expanded;
 
     /**
      * @var bool
@@ -253,13 +253,13 @@ trait CategoryTrait
      */
     public function isActive()
     {
-        return $this->isActive;
+        return $this->active;
     }
 
     /**
      * @return bool
      */
-    public function getIsActive()
+    public function getActive()
     {
         return $this->isActive();
     }
@@ -267,9 +267,9 @@ trait CategoryTrait
     /**
      * @param bool $state
      */
-    public function setIsActive($state)
+    public function setActive($state)
     {
-        $this->isActive = $state;
+        $this->active = $state;
     }
 
     /**
@@ -291,7 +291,7 @@ trait CategoryTrait
     /**
      * @param bool $current
      */
-    public function setIsCurrent($current)
+    public function setCurrent($current)
     {
         $this->current = $current;
     }
@@ -299,7 +299,7 @@ trait CategoryTrait
     /**
      * @return bool
      */
-    public function getIsCurrent()
+    public function getCurrent()
     {
         return $this->isCurrent();
     }
@@ -315,15 +315,15 @@ trait CategoryTrait
     /**
      * @param bool $state
      */
-    public function setIsExpanded($state)
+    public function setExpanded($state)
     {
-        $this->isExpanded = $state;
+        $this->expanded = $state;
     }
 
     /**
      * @return bool
      */
-    public function getIsExpanded()
+    public function getExpanded()
     {
         return $this->isExpanded();
     }
@@ -333,7 +333,7 @@ trait CategoryTrait
      */
     public function isExpanded()
     {
-        return $this->isExpanded;
+        return $this->expanded;
     }
 
     /**
@@ -373,13 +373,13 @@ trait CategoryTrait
      */
     public function isHidden()
     {
-        return $this->isHidden;
+        return $this->hidden;
     }
 
     /**
      * @return bool
      */
-    public function getIsHidden()
+    public function getHidden()
     {
         return $this->isHidden();
     }
@@ -387,9 +387,9 @@ trait CategoryTrait
     /**
      * @param bool $state
      */
-    public function setIsHidden($state)
+    public function setHidden($state)
     {
-        $this->isHidden = $state;
+        $this->hidden = $state;
     }
 
     /**

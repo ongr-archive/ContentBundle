@@ -173,16 +173,16 @@ class CategoryServiceTest extends ElasticsearchTestCase
     {
         $cat = new Category();
         $cat->id = $category['id'];
-        $cat->setIsActive($category['is_active']);
+        $cat->setActive($category['is_active']);
         $cat->setSort($category['sort']);
         $cat->setLeft($category['left']);
         $cat->setParentId($category['parent_id']);
         $cat->setLevel($category['level']);
         if (isset($category['is_hidden'])) {
-            $cat->setIsHidden($category['is_hidden']);
+            $cat->setHidden($category['is_hidden']);
         }
-        isset($category['is_current']) && $cat->setIsCurrent($category['is_current']);
-        isset($category['is_expanded']) && $cat->setIsExpanded($category['is_expanded']);
+        isset($category['is_current']) && $cat->setCurrent($category['is_current']);
+        isset($category['is_expanded']) && $cat->setExpanded($category['is_expanded']);
 
         return $cat;
     }
@@ -357,9 +357,9 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $service->getTree();
 
         $expected = $data['cat42'];
-        $expected->setIsCurrent(true);
-        $expected->setIsExpanded(true);
-        $expected->getParent()->setIsExpanded(true);
+        $expected->setCurrent(true);
+        $expected->setExpanded(true);
+        $expected->getParent()->setExpanded(true);
 
         $leaf = $service->getCurrentCategoryDocument();
         $this->assertEquals($expected, $leaf);
