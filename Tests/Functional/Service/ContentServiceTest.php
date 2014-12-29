@@ -36,8 +36,8 @@ class ContentServiceTest extends ElasticsearchTestCase
                         '_id' => 3,
                         'slug' => 'awsome',
                     ],
-                ]
-            ]
+                ],
+            ],
         ];
     }
 
