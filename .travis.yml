@@ -6,7 +6,15 @@ php:
 services:
   - elasticsearch
 before_script:
+  - composer self-update
   - composer update --prefer-dist
 script:
-  - vendor/bin/phpunit --coverage-text
+  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
   - vendor/bin/phpcs -p --standard=$TRAVIS_BUILD_DIR/vendor/ongr/ongr-strict-standard/ONGR --ignore=vendor/,Tests/app/,Resources/public/ ./
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+cache:
+  directories:
+    - vendor/
+    - $HOME/.composer/cache
