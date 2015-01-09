@@ -11,23 +11,16 @@
 
 namespace ONGR\ContentBundle\Tests\app\fixture\Acme\TestBundle\Document;
 
-use ONGR\ContentBundle\Document\Traits\ContentTrait;
+use ONGR\ContentBundle\Document\ContentDocument;
 use ONGR\ElasticsearchBundle\Annotation as ES;
-use ONGR\ElasticsearchBundle\Document\DocumentInterface;
-use ONGR\ElasticsearchBundle\Document\DocumentTrait;
-use ONGR\RouterBundle\Document\SeoAwareTrait;
 
 /**
  * Dummy content document.
  *
  * @ES\Document(type="content")
  */
-class Content implements DocumentInterface
+class Content extends ContentDocument
 {
-    use DocumentTrait;
-    use SeoAwareTrait;
-    use ContentTrait;
-
     /**
      * @var string
      *

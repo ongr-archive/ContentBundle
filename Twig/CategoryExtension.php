@@ -142,11 +142,11 @@ class CategoryExtension extends \Twig_Extension
     /**
      * Renders category tree.
      *
-     * @param \Twig_Environment $environment
-     * @param array             $tree
-     * @param string|null       $selectedCategory
-     * @param string|null       $currentCategory
-     * @param string|null       $template
+     * @param \Twig_Environment    $environment
+     * @param array|\ArrayIterator $tree
+     * @param string|null          $selectedCategory
+     * @param string|null          $currentCategory
+     * @param string|null          $template
      *
      * @return null|string
      */

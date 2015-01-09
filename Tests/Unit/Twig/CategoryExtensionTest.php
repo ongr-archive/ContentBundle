@@ -14,6 +14,7 @@ namespace ONGR\ContentBundle\Tests\Unit\Twig;
 use ONGR\ContentBundle\Service\CategoryService;
 use ONGR\ContentBundle\Twig\CategoryExtension;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Twig_Environment;
 
 class CategoryExtensionTest extends WebTestCase
 {
@@ -72,6 +73,7 @@ class CategoryExtensionTest extends WebTestCase
         $template = 'testTemplate';
         $expected = 'testStr';
 
+        /** @var Twig_Environment|\PHPUnit_Framework_MockObject_MockObject $environment */
         $environment = $this->getMock('Twig_Environment', ['render']);
         $environment->expects($this->once())
             ->method('render')
@@ -104,6 +106,7 @@ class CategoryExtensionTest extends WebTestCase
         $tree = [1];
         $categoryDocument = new \stdClass();
 
+        /** @var Twig_Environment|\PHPUnit_Framework_MockObject_MockObject $environment */
         $environment = $this->getMock('Twig_Environment', ['render']);
         $environment->expects($this->once())
             ->method('render')
@@ -117,6 +120,7 @@ class CategoryExtensionTest extends WebTestCase
             )
             ->will($this->returnValue($expected));
 
+        /** @var CategoryService|\PHPUnit_Framework_MockObject_MockObject $service */
         $service = $this->getMock('stdClass', ['getTree', 'setCurrentCategoryId', 'getCurrentCategoryDocument']);
         $service->expects($this->once())->method('getTree')->with($maxLevel)->will($this->returnValue($tree));
         $service->expects($this->once())->method('getCurrentCategoryDocument')->will(

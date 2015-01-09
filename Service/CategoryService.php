@@ -11,9 +11,8 @@
 
 namespace ONGR\ContentBundle\Service;
 
-use ONGR\ContentBundle\Document\Traits\CategoryTrait;
+use ONGR\ContentBundle\Document\CategoryDocument;
 use ONGR\ElasticsearchBundle\Document\DocumentInterface;
-use ONGR\ElasticsearchBundle\Document\DocumentTrait;
 use ONGR\ElasticsearchBundle\DSL\Query\TermQuery;
 use ONGR\ElasticsearchBundle\DSL\Search;
 use ONGR\ElasticsearchBundle\DSL\Sort\Sort;
@@ -87,9 +86,9 @@ class CategoryService
     /**
      * Builds a child node.
      *
-     * @param CategoryTrait|DocumentTrait $node
-     * @param \ArrayIterator              $references
-     * @param int                         $maxLevel
+     * @param CategoryDocument $node
+     * @param \ArrayIterator   $references
+     * @param int              $maxLevel
      */
     private function buildChildNode($node, $references, $maxLevel)
     {
@@ -122,9 +121,9 @@ class CategoryService
     /**
      * Builds a root node.
      *
-     * @param CategoryTrait|DocumentTrait $node
-     * @param \ArrayIterator              $tree
-     * @param int                         $level
+     * @param CategoryDocument $node
+     * @param \ArrayIterator   $tree
+     * @param int              $level
      */
     private function buildRootNode($node, $tree, $level)
     {
@@ -135,10 +134,10 @@ class CategoryService
     /**
      * Builds a node. Sets node parameters.
      *
-     * @param CategoryTrait|DocumentTrait $node
-     * @param \ArrayIterator              $references
-     * @param \ArrayIterator              $tree
-     * @param int                         $maxLevel
+     * @param CategoryDocument $node
+     * @param \ArrayIterator   $references
+     * @param \ArrayIterator   $tree
+     * @param int              $maxLevel
      */
     private function buildNode($node, $references, $tree, $maxLevel)
     {
@@ -207,7 +206,7 @@ class CategoryService
      */
     protected function sortChildTree(&$tree)
     {
-        /** @var CategoryTrait|DocumentTrait $node */
+        /** @var CategoryDocument $node */
         if (is_array($tree)) {
             uasort($tree, [$this, 'sortNodes']);
             foreach ($tree as $node) {
@@ -233,8 +232,8 @@ class CategoryService
     /**
      * Sorts nodes by field sort if value equal then by field left.
      *
-     * @param CategoryTrait|DocumentTrait $a
-     * @param CategoryTrait|DocumentTrait $b
+     * @param CategoryDocument $a
+     * @param CategoryDocument $b
      *
      * @return int
      */
@@ -297,14 +296,14 @@ class CategoryService
     /**
      * Returns partial tree by category ID.
      *
-     * @param array  $tree
-     * @param string $categoryId
+     * @param array|\ArrayIterator $tree
+     * @param string               $categoryId
      *
      * @return array
      */
     protected function findPartialTree($tree, $categoryId)
     {
-        /** @var CategoryTrait|DocumentTrait $node */
+        /** @var CategoryDocument $node */
         foreach ($tree as $node) {
             if ($node->getId() == $categoryId) {
                 return [$node];
@@ -374,13 +373,5 @@ class CategoryService
     protected function setLoadHiddenCategories($param)
     {
         $this->loadHiddenCategories = $param;
-    }
-
-    /**
-     * @param string $categoryRootId
-     */
-    public function setCategoryRootId($categoryRootId)
-    {
-        $this->categoryRootId = $categoryRootId;
     }
 }

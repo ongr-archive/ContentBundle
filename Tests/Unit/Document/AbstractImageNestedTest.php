@@ -11,19 +11,19 @@
 
 namespace ONGR\ContentBundle\Tests\Unit\Document;
 
-use ONGR\ContentBundle\Document\Traits\ImagesNestedTrait;
+use ONGR\ContentBundle\Document\AbstractImageNested;
 
 /**
- * Provides tests for imagesNested document.
+ * Provides tests for imageNested document.
  */
-class ImagesNestedTraitTest extends \PHPUnit_Framework_TestCase
+class AbstractImageNestedTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Provides data for testImagesNestedTrait().
+     * Provides data for testImageNested().
      *
      * @return array
      */
-    public function imagesNestedTraitDataProvider()
+    public function imageNestedDataProvider()
     {
         $data = [
             [
@@ -46,16 +46,16 @@ class ImagesNestedTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests imagesNested trait.
+     * Tests imageNested.
      *
      * @param array $data
      *
-     * @dataProvider imagesNestedTraitDataProvider()
+     * @dataProvider imageNestedDataProvider()
      */
-    public function testImagesNestedTrait(array $data)
+    public function testImageNested(array $data)
     {
-        /** @var ImagesNestedTrait $imagesNested */
-        $imagesNested = $this->getMockForTrait('ONGR\\ContentBundle\\Document\\Traits\\ImagesNestedTrait');
+        /** @var AbstractImageNested $imagesNested */
+        $imagesNested = $this->getMock('ONGR\ContentBundle\Document\AbstractImageNested', null);
         $imagesNested->setUrl($data['url']);
         $this->assertEquals($data['url'], $imagesNested->getUrl());
 

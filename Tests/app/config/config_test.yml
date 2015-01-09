@@ -16,6 +16,7 @@ monolog:
             type:  stream
             action_level: error
             path:  %kernel.logs_dir%/test.log
+
 ongr_elasticsearch:
     connections:
         default:
@@ -37,6 +38,7 @@ ongr_content:
             product: es.manager.default.product
             content: es.manager.default.content
             category: es.manager.default.category
+
 ongr_router:
     es_manager: default
     seo_routes:

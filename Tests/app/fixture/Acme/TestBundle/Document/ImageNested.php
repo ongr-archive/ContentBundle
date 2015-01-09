@@ -11,14 +11,14 @@
 
 namespace ONGR\ContentBundle\Tests\app\fixture\Acme\TestBundle\Document;
 
-use ONGR\ContentBundle\Document\ProductDocument;
+use ONGR\ContentBundle\Document\AbstractImageNested;
 use ONGR\ElasticsearchBundle\Annotation as ES;
 
 /**
- * Dummy product document.
+ * Dummy nested image.
  *
- * @ES\Document(type="product")
+ * @ES\Nested
  */
-class Product extends ProductDocument
+class ImageNested extends AbstractImageNested
 {
 }

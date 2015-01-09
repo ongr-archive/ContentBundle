@@ -11,14 +11,14 @@
 
 namespace ONGR\ContentBundle\Tests\app\fixture\Acme\TestBundle\Document;
 
-use ONGR\ContentBundle\Document\ProductDocument;
+use ONGR\ContentBundle\Document\AbstractUrlObject;
 use ONGR\ElasticsearchBundle\Annotation as ES;
 
 /**
- * Dummy product document.
+ * Dummy url object.
  *
- * @ES\Document(type="product")
+ * @ES\Object
  */
-class Product extends ProductDocument
+class UrlObject extends AbstractUrlObject
 {
 }

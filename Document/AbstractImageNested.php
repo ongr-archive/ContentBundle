@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace ONGR\ContentBundle\Document\Traits;
+namespace ONGR\ContentBundle\Document;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
 
 /**
- * Trait used for documents which require ImagesNested standard fields.
+ * Nested used for documents which require ImageNested standard fields.
  *
- * @deprecated Will be removed in stable version. Use AbstractImageNested instead.
+ * @ES\Nested
  */
-trait ImagesNestedTrait
+abstract class AbstractImageNested
 {
     /**
      * @var string

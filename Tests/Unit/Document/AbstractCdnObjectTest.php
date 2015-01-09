@@ -11,19 +11,19 @@
 
 namespace ONGR\ContentBundle\Tests\Unit\Document;
 
-use ONGR\ContentBundle\Document\Traits\CdnObjectTrait;
+use ONGR\ContentBundle\Document\AbstractCdnObject;
 
 /**
  * Provides tests for cdn object.
  */
-class CdnObjectTraitTest extends \PHPUnit_Framework_TestCase
+class AbstractCdnObjectTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Provides data for testCdnTrait().
+     * Provides data for testCdnObject().
      *
      * @return array
      */
-    public function cdnTraitDataProvider()
+    public function cdnObjectDataProvider()
     {
         $data = [
             [
@@ -42,16 +42,16 @@ class CdnObjectTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests cnd trait.
+     * Tests cnd object.
      *
      * @param array $data
      *
-     * @dataProvider cdnTraitDataProvider()
+     * @dataProvider cdnObjectDataProvider()
      */
-    public function testCdnTrait(array $data)
+    public function testCdnObject(array $data)
     {
-        /** @var CdnObjectTrait $cdn */
-        $cdn = $this->getMockForTrait('ONGR\\ContentBundle\\Document\\Traits\\CdnObjectTrait');
+        /** @var AbstractCdnObject $cdn */
+        $cdn = $this->getMock('ONGR\ContentBundle\Document\AbstractCdnObject', null);
         $cdn->setCdnUrl($data['cdn_url']);
         $this->assertEquals($data['cdn_url'], $cdn->getCdnUrl());
     }

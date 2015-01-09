@@ -132,11 +132,11 @@ class CategoryServiceTest extends ElasticsearchTestCase
      */
     protected function getTestDataService()
     {
-        $repository = $this->getMockBuilder('ElasticsearchBundle\\ORM\\Repository')
+        $repository = $this->getMockBuilder('ElasticsearchBundle\ORM\Repository')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $manager = $this->getMockBuilder('ElasticsearchBundle\\ORM\\Manager')
+        $manager = $this->getMockBuilder('ElasticsearchBundle\ORM\Manager')
             ->disableOriginalConstructor()
             ->getMock();
         $manager->expects($this->any())
@@ -178,9 +178,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $cat->setLeft($category['left']);
         $cat->setParentId($category['parent_id']);
         $cat->setLevel($category['level']);
-        if (isset($category['is_hidden'])) {
-            $cat->setHidden($category['is_hidden']);
-        }
+        isset($category['is_hidden']) && $cat->setHidden($category['is_hidden']);
         isset($category['is_current']) && $cat->setCurrent($category['is_current']);
         isset($category['is_expanded']) && $cat->setExpanded($category['is_expanded']);
 
