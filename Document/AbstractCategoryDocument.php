@@ -160,7 +160,7 @@ abstract class AbstractCategoryDocument implements DocumentInterface
      * If key is null value is put to the end.
      *
      * @param AbstractCategoryDocument|\Iterator $value
-     * @param string                     $key
+     * @param string                             $key
      */
     public function setChild($value, $key = null)
     {

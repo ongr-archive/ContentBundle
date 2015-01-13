@@ -87,8 +87,8 @@ class CategoryService
      * Builds a child node.
      *
      * @param AbstractCategoryDocument $node
-     * @param \ArrayIterator   $references
-     * @param int              $maxLevel
+     * @param \ArrayIterator           $references
+     * @param int                      $maxLevel
      */
     private function buildChildNode($node, $references, $maxLevel)
     {
@@ -122,8 +122,8 @@ class CategoryService
      * Builds a root node.
      *
      * @param AbstractCategoryDocument $node
-     * @param \ArrayIterator   $tree
-     * @param int              $level
+     * @param \ArrayIterator           $tree
+     * @param int                      $level
      */
     private function buildRootNode($node, $tree, $level)
     {
@@ -135,9 +135,9 @@ class CategoryService
      * Builds a node. Sets node parameters.
      *
      * @param AbstractCategoryDocument $node
-     * @param \ArrayIterator   $references
-     * @param \ArrayIterator   $tree
-     * @param int              $maxLevel
+     * @param \ArrayIterator           $references
+     * @param \ArrayIterator           $tree
+     * @param int                      $maxLevel
      */
     private function buildNode($node, $references, $tree, $maxLevel)
     {
