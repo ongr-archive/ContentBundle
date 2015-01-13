@@ -110,7 +110,7 @@ class CategoryService
      *
      * @param string $id Category ID.
      *
-     * @return DocumentInterface|null
+     * @return DocumentInterface
      */
     public function getCategory($id)
     {
