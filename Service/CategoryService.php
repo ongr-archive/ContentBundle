@@ -11,7 +11,7 @@
 
 namespace ONGR\ContentBundle\Service;
 
-use ONGR\ContentBundle\Document\CategoryDocument;
+use ONGR\ContentBundle\Document\AbstractCategoryDocument;
 use ONGR\ElasticsearchBundle\Document\DocumentInterface;
 use ONGR\ElasticsearchBundle\DSL\Query\TermQuery;
 use ONGR\ElasticsearchBundle\DSL\Search;
@@ -86,7 +86,7 @@ class CategoryService
     /**
      * Builds a child node.
      *
-     * @param CategoryDocument $node
+     * @param AbstractCategoryDocument $node
      * @param \ArrayIterator   $references
      * @param int              $maxLevel
      */
@@ -121,7 +121,7 @@ class CategoryService
     /**
      * Builds a root node.
      *
-     * @param CategoryDocument $node
+     * @param AbstractCategoryDocument $node
      * @param \ArrayIterator   $tree
      * @param int              $level
      */
@@ -134,7 +134,7 @@ class CategoryService
     /**
      * Builds a node. Sets node parameters.
      *
-     * @param CategoryDocument $node
+     * @param AbstractCategoryDocument $node
      * @param \ArrayIterator   $references
      * @param \ArrayIterator   $tree
      * @param int              $maxLevel
@@ -206,7 +206,7 @@ class CategoryService
      */
     protected function sortChildTree(&$tree)
     {
-        /** @var CategoryDocument $node */
+        /** @var AbstractCategoryDocument $node */
         if (is_array($tree)) {
             uasort($tree, [$this, 'sortNodes']);
             foreach ($tree as $node) {
@@ -232,8 +232,8 @@ class CategoryService
     /**
      * Sorts nodes by field sort if value equal then by field left.
      *
-     * @param CategoryDocument $a
-     * @param CategoryDocument $b
+     * @param AbstractCategoryDocument $a
+     * @param AbstractCategoryDocument $b
      *
      * @return int
      */
@@ -303,7 +303,7 @@ class CategoryService
      */
     protected function findPartialTree($tree, $categoryId)
     {
-        /** @var CategoryDocument $node */
+        /** @var AbstractCategoryDocument $node */
         foreach ($tree as $node) {
             if ($node->getId() == $categoryId) {
                 return [$node];

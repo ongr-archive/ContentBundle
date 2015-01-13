@@ -11,7 +11,7 @@
 
 namespace ONGR\ContentBundle\Tests\app\fixture\Acme\TestBundle\Document;
 
-use ONGR\ContentBundle\Document\ContentDocument;
+use ONGR\ContentBundle\Document\AbstractContentDocument;
 use ONGR\ElasticsearchBundle\Annotation as ES;
 
 /**
@@ -19,7 +19,7 @@ use ONGR\ElasticsearchBundle\Annotation as ES;
  *
  * @ES\Document(type="content")
  */
-class Content extends ContentDocument
+class Content extends AbstractContentDocument
 {
     /**
      * @var string

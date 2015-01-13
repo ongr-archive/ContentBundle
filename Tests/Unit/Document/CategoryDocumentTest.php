@@ -11,7 +11,7 @@
 
 namespace ONGR\ContentBundle\Tests\Unit\Document;
 
-use ONGR\ContentBundle\Document\CategoryDocument;
+use ONGR\ContentBundle\Document\AbstractCategoryDocument;
 
 /**
  * Provides tests for category document.
@@ -70,8 +70,8 @@ class CategoryDocumentTest extends \PHPUnit_Framework_TestCase
      */
     public function testCategoryDocument(array $data)
     {
-        /** @var CategoryDocument $cat */
-        $cat = $this->getMockForAbstractClass('ONGR\ContentBundle\Document\CategoryDocument');
+        /** @var AbstractCategoryDocument $cat */
+        $cat = $this->getMockForAbstractClass('ONGR\ContentBundle\Document\AbstractCategoryDocument');
         $cat->setActive($data['active']);
         $this->assertEquals($data['active'], $cat->isActive());
         $this->assertEquals($data['active'], $cat->getActive());
@@ -115,8 +115,8 @@ class CategoryDocumentTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(false, $cat->hasChildren());
         $this->assertEquals(false, $cat->hasVisibleChildren());
 
-        /** @var CategoryDocument $cat2 */
-        $cat2 = $this->getMockForAbstractClass('ONGR\ContentBundle\Document\CategoryDocument');
+        /** @var AbstractCategoryDocument $cat2 */
+        $cat2 = $this->getMockForAbstractClass('ONGR\ContentBundle\Document\AbstractCategoryDocument');
         $cat2->setHidden(false);
         $cat->addChild($cat2);
         $this->assertEquals(true, $cat->hasVisibleChildren());
@@ -124,8 +124,8 @@ class CategoryDocumentTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(false, $cat2->isHidden());
         $this->assertEquals(false, $cat2->getHidden());
 
-        /** @var CategoryDocument $cat3 */
-        $cat3 = $this->getMockForAbstractClass('ONGR\ContentBundle\Document\CategoryDocument');
+        /** @var AbstractCategoryDocument $cat3 */
+        $cat3 = $this->getMockForAbstractClass('ONGR\ContentBundle\Document\AbstractCategoryDocument');
         $cat3->setHidden(true);
         $cat2->addChild($cat3);
         $this->assertEquals(false, $cat2->hasVisibleChildren());

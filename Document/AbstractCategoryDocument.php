@@ -21,7 +21,7 @@ use ONGR\RouterBundle\Document\SeoAwareTrait;
  *
  * @ES\Document(create=false)
  */
-abstract class CategoryDocument implements DocumentInterface
+abstract class AbstractCategoryDocument implements DocumentInterface
 {
     use DocumentTrait;
     use SeoAwareTrait;
@@ -98,7 +98,7 @@ abstract class CategoryDocument implements DocumentInterface
     private $breadcrumbs;
 
     /**
-     * @var CategoryDocument[]|\Iterator
+     * @var AbstractCategoryDocument[]|\Iterator
      */
     private $children;
 
@@ -131,7 +131,7 @@ abstract class CategoryDocument implements DocumentInterface
     }
 
     /**
-     * @param CategoryDocument[]|\Iterator $children
+     * @param AbstractCategoryDocument[]|\Iterator $children
      */
     public function setChildren($children)
     {
@@ -139,7 +139,7 @@ abstract class CategoryDocument implements DocumentInterface
     }
 
     /**
-     * @return CategoryDocument[]|\Iterator
+     * @return AbstractCategoryDocument[]|\Iterator
      */
     public function getChildren()
     {
@@ -159,7 +159,7 @@ abstract class CategoryDocument implements DocumentInterface
     /**
      * If key is null value is put to the end.
      *
-     * @param CategoryDocument|\Iterator $value
+     * @param AbstractCategoryDocument|\Iterator $value
      * @param string                     $key
      */
     public function setChild($value, $key = null)
@@ -174,7 +174,7 @@ abstract class CategoryDocument implements DocumentInterface
     /**
      * Adds child to the end of children array.
      *
-     * @param CategoryDocument|\Iterator $value
+     * @param AbstractCategoryDocument|\Iterator $value
      */
     public function addChild($value)
     {

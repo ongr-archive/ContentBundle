@@ -11,7 +11,7 @@
 
 namespace ONGR\ContentBundle\Tests\Unit\Document;
 
-use ONGR\ContentBundle\Document\ContentDocument;
+use ONGR\ContentBundle\Document\AbstractContentDocument;
 
 /**
  * Provides tests for content document.
@@ -54,8 +54,8 @@ class ContentDocumentTest extends \PHPUnit_Framework_TestCase
      */
     public function testContentDocument(array $data)
     {
-        /** @var ContentDocument $content */
-        $content = $this->getMockForAbstractClass('ONGR\ContentBundle\Document\ContentDocument');
+        /** @var AbstractContentDocument $content */
+        $content = $this->getMockForAbstractClass('ONGR\ContentBundle\Document\AbstractContentDocument');
         $content->setSlug($data['slug']);
         $this->assertEquals($data['slug'], $content->getSlug());
 

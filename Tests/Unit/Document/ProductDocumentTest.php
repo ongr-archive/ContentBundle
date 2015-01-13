@@ -11,7 +11,7 @@
 
 namespace ONGR\ContentBundle\Tests\Unit\Document;
 
-use ONGR\ContentBundle\Document\ProductDocument;
+use ONGR\ContentBundle\Document\AbstractProductDocument;
 
 /**
  * Provides tests for product document.
@@ -58,8 +58,8 @@ class ProductDocumentTest extends \PHPUnit_Framework_TestCase
      */
     public function testProductDocument(array $data)
     {
-        /** @var ProductDocument $product */
-        $product = $this->getMockForAbstractClass('ONGR\ContentBundle\Document\ProductDocument');
+        /** @var AbstractProductDocument $product */
+        $product = $this->getMockForAbstractClass('ONGR\ContentBundle\Document\AbstractProductDocument');
         $product->setTitle($data['title']);
         $this->assertEquals($data['title'], $product->getTitle());
 

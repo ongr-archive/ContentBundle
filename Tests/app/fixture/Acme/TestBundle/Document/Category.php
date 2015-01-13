@@ -11,7 +11,7 @@
 
 namespace ONGR\ContentBundle\Tests\app\fixture\Acme\TestBundle\Document;
 
-use ONGR\ContentBundle\Document\CategoryDocument;
+use ONGR\ContentBundle\Document\AbstractCategoryDocument;
 use ONGR\ElasticsearchBundle\Annotation as ES;
 
 /**
@@ -19,7 +19,7 @@ use ONGR\ElasticsearchBundle\Annotation as ES;
  *
  * @ES\Document(type="category")
  */
-class Category extends CategoryDocument
+class Category extends AbstractCategoryDocument
 {
     /**
      * @var UrlObject[]|\Iterator

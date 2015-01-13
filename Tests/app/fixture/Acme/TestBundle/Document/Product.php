@@ -11,7 +11,7 @@
 
 namespace ONGR\ContentBundle\Tests\app\fixture\Acme\TestBundle\Document;
 
-use ONGR\ContentBundle\Document\ProductDocument;
+use ONGR\ContentBundle\Document\AbstractProductDocument;
 use ONGR\ElasticsearchBundle\Annotation as ES;
 
 /**
@@ -19,6 +19,6 @@ use ONGR\ElasticsearchBundle\Annotation as ES;
  *
  * @ES\Document(type="product")
  */
-class Product extends ProductDocument
+class Product extends AbstractProductDocument
 {
 }

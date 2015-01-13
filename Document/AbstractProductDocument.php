@@ -20,7 +20,7 @@ use ONGR\ElasticsearchBundle\Document\DocumentTrait;
  *
  * @ES\Document(create=false)
  */
-abstract class ProductDocument implements DocumentInterface
+abstract class AbstractProductDocument implements DocumentInterface
 {
     use DocumentTrait;
 

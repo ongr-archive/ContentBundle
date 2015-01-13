@@ -14,7 +14,7 @@ namespace ONGR\ContentBundle\Document\Traits;
 /**
  * Trait used for documents which require Category standard fields.
  *
- * @deprecated Will be removed in stable version. Use CategoryDocument instead.
+ * @deprecated Will be removed in stable version. Use AbstractCategoryDocument instead.
  */
 trait CategoryTrait
 {

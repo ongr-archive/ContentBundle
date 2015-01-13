@@ -21,7 +21,7 @@ use ONGR\RouterBundle\Document\SeoAwareTrait;
  *
  * @ES\Document(create=false)
  */
-abstract class ContentDocument implements DocumentInterface
+abstract class AbstractContentDocument implements DocumentInterface
 {
     use DocumentTrait;
     use SeoAwareTrait;
