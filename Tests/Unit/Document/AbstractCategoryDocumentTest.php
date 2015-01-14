@@ -16,7 +16,7 @@ use ONGR\ContentBundle\Document\AbstractCategoryDocument;
 /**
  * Provides tests for category document.
  */
-class CategoryDocumentTest extends \PHPUnit_Framework_TestCase
+class AbstractCategoryDocumentTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Provides data for testCategoryDocument().

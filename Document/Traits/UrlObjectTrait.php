@@ -16,7 +16,7 @@ use ONGR\ElasticsearchBundle\Annotation as ES;
 /**
  * Trait used for documents which require UrlObject standard fields.
  *
- * @deprecated Will be removed in stable version. Use AbstractUrlObject instead.
+ * @deprecated Will be removed in stable version. Use UrlObject instead.
  */
 trait UrlObjectTrait
 {

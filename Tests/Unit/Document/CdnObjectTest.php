@@ -11,12 +11,12 @@
 
 namespace ONGR\ContentBundle\Tests\Unit\Document;
 
-use ONGR\ContentBundle\Document\AbstractCdnObject;
+use ONGR\ContentBundle\Document\CdnObject;
 
 /**
  * Provides tests for cdn object.
  */
-class AbstractCdnObjectTest extends \PHPUnit_Framework_TestCase
+class CdnObjectTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Provides data for testCdnObject().
@@ -50,8 +50,8 @@ class AbstractCdnObjectTest extends \PHPUnit_Framework_TestCase
      */
     public function testCdnObject(array $data)
     {
-        /** @var AbstractCdnObject $cdn */
-        $cdn = $this->getMock('ONGR\ContentBundle\Document\AbstractCdnObject', null);
+        /** @var CdnObject $cdn */
+        $cdn = $this->getMock('ONGR\ContentBundle\Document\CdnObject', null);
         $cdn->setCdnUrl($data['cdn_url']);
         $this->assertEquals($data['cdn_url'], $cdn->getCdnUrl());
     }

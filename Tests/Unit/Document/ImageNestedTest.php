@@ -11,12 +11,12 @@
 
 namespace ONGR\ContentBundle\Tests\Unit\Document;
 
-use ONGR\ContentBundle\Document\AbstractImageNested;
+use ONGR\ContentBundle\Document\ImageNested;
 
 /**
  * Provides tests for imageNested document.
  */
-class AbstractImageNestedTest extends \PHPUnit_Framework_TestCase
+class ImageNestedTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Provides data for testImageNested().
@@ -54,8 +54,8 @@ class AbstractImageNestedTest extends \PHPUnit_Framework_TestCase
      */
     public function testImageNested(array $data)
     {
-        /** @var AbstractImageNested $imagesNested */
-        $imagesNested = $this->getMock('ONGR\ContentBundle\Document\AbstractImageNested', null);
+        /** @var ImageNested $imagesNested */
+        $imagesNested = $this->getMock('ONGR\ContentBundle\Document\ImageNested', null);
         $imagesNested->setUrl($data['url']);
         $this->assertEquals($data['url'], $imagesNested->getUrl());
 

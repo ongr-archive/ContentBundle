@@ -18,7 +18,7 @@ use ONGR\ElasticsearchBundle\Annotation as ES;
  *
  * @ES\Object
  */
-abstract class AbstractUrlObject
+class UrlObject
 {
     /**
      * @var string

@@ -16,7 +16,7 @@ use ONGR\ElasticsearchBundle\Annotation as ES;
 /**
  * Trait used for documents which require ImagesNested standard fields.
  *
- * @deprecated Will be removed in stable version. Use AbstractImageNested instead.
+ * @deprecated Will be removed in stable version. Use ImageNested instead.
  */
 trait ImagesNestedTrait
 {

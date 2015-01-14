@@ -16,7 +16,7 @@ use ONGR\ContentBundle\Document\AbstractContentDocument;
 /**
  * Provides tests for content document.
  */
-class ContentDocumentTest extends \PHPUnit_Framework_TestCase
+class AbstractContentDocumentTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Provides data for testContentDocument().

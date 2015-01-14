@@ -11,12 +11,12 @@
 
 namespace ONGR\ContentBundle\Tests\Unit\Document;
 
-use ONGR\ContentBundle\Document\AbstractUrlObject;
+use ONGR\ContentBundle\Document\UrlObject;
 
 /**
  * Provides tests for url object.
  */
-class AbstractUrlObjectTest extends \PHPUnit_Framework_TestCase
+class UrlObjectTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Provides data for testUrlObject().
@@ -52,8 +52,8 @@ class AbstractUrlObjectTest extends \PHPUnit_Framework_TestCase
      */
     public function testUrlObject(array $data)
     {
-        /** @var AbstractUrlObject $url */
-        $url = $this->getMock('ONGR\ContentBundle\Document\AbstractUrlObject', null);
+        /** @var UrlObject $url */
+        $url = $this->getMock('ONGR\ContentBundle\Document\UrlObject', null);
         $url->setUrl($data['url']);
         $this->assertEquals($data['url'], $url->getUrl());
 

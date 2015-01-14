@@ -12,6 +12,9 @@
 namespace ONGR\ContentBundle\Tests\app\fixture\Acme\TestBundle\Document;
 
 use ONGR\ContentBundle\Document\AbstractCategoryDocument;
+use ONGR\ContentBundle\Document\CdnObject;
+use ONGR\ContentBundle\Document\ImageNested;
+use ONGR\ContentBundle\Document\UrlObject;
 use ONGR\ElasticsearchBundle\Annotation as ES;
 
 /**
@@ -24,21 +27,21 @@ class Category extends AbstractCategoryDocument
     /**
      * @var UrlObject[]|\Iterator
      *
-     * @ES\Property(name="urls", type="object", objectName="AcmeTestBundle:UrlObject", multiple=true)
+     * @ES\Property(name="urls", type="object", objectName="ONGRContentBundle:UrlObject", multiple=true)
      */
     public $dummyUrls;
 
     /**
      * @var CdnObject[]|\Iterator
      *
-     * @ES\Property(name="cdn_urls", type="object", objectName="AcmeTestBundle:CdnObject", multiple=true)
+     * @ES\Property(name="cdn_urls", type="object", objectName="ONGRContentBundle:CdnObject", multiple=true)
      */
     public $dummyCdnUrls;
 
     /**
      * @var ImageNested[]|\Iterator
      *
-     * @ES\Property(name="images", type="nested", objectName="AcmeTestBundle:ImageNested", multiple=true)
+     * @ES\Property(name="images", type="nested", objectName="ONGRContentBundle:ImageNested", multiple=true)
      */
     public $dummyImagesNested;
 }

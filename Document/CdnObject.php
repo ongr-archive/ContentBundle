@@ -18,7 +18,7 @@ use ONGR\ElasticsearchBundle\Annotation as ES;
  *
  * @ES\Object
  */
-abstract class AbstractCdnObject
+class CdnObject
 {
     /**
      * @var string

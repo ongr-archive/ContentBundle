@@ -16,7 +16,7 @@ use ONGR\ContentBundle\Document\AbstractProductDocument;
 /**
  * Provides tests for product document.
  */
-class ProductDocumentTest extends \PHPUnit_Framework_TestCase
+class AbstractProductDocumentTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Provides data for testProductDocument().

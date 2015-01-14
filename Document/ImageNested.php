@@ -18,7 +18,7 @@ use ONGR\ElasticsearchBundle\Annotation as ES;
  *
  * @ES\Nested
  */
-abstract class AbstractImageNested
+class ImageNested
 {
     /**
      * @var string
