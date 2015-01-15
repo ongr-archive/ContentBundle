@@ -31,21 +31,21 @@ abstract class AbstractContentDocument implements DocumentInterface
      *
      * @ES\Property(type="string", name="slug", index="not_analyzed")
      */
-    private $slug;
+    protected $slug;
 
     /**
      * @var string
      *
      * @ES\Property(type="string", name="title", index="not_analyzed")
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string
      *
      * @ES\Property(type="string", name="content")
      */
-    private $content;
+    protected $content;
 
     /**
      * @return string

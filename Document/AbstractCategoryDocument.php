@@ -31,66 +31,66 @@ abstract class AbstractCategoryDocument implements DocumentInterface
      *
      * @ES\Property(type="string", name="sort")
      */
-    private $sort;
+    protected $sort;
 
     /**
      * @var bool
      *
      * @ES\Property(type="boolean", name="is_active")
      */
-    private $active;
+    protected $active;
 
     /**
      * @var string
      *
      * @ES\Property(type="string", name="parent_id")
      */
-    private $parentId;
+    protected $parentId;
 
     /**
      * @var int
      *
      * @ES\Property(type="integer", name="level")
      */
-    private $level;
+    protected $level;
 
     /**
      * @var string
      *
      * @ES\Property(type="string", name="title", index="not_analyzed")
      */
-    private $title;
+    protected $title;
 
     /**
      * @var bool
      *
      * @ES\Property(type="boolean", name="is_hidden")
      */
-    private $hidden;
+    protected $hidden;
 
     /**
      * @var int
      *
      * @ES\Property(type="integer", name="left")
      */
-    private $left;
+    protected $left;
 
     /**
      * @var int
      *
      * @ES\Property(type="integer", name="right")
      */
-    private $right;
+    protected $right;
 
     /**
      * @var bool
      */
-    private $expanded;
+    protected $expanded;
 
     /**
      * @var bool
      */
-    private $current;
+    protected $current;
 
     /**
      * @var array
@@ -100,7 +100,7 @@ abstract class AbstractCategoryDocument implements DocumentInterface
     /**
      * @var AbstractCategoryDocument[]|\Iterator
      */
-    private $children;
+    protected $children;
 
     /**
      * Tests if category has any children.
