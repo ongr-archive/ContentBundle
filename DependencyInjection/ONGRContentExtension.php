@@ -46,6 +46,7 @@ class ONGRContentExtension extends Extension
 
         $categoryService = $container->getDefinition('ongr_content.category_service');
         $categoryService->addArgument(new Reference($repositories['category']));
+        $categoryService->addArgument($config['category_root_id']);
 
         $container->setParameter('ongr_content.snippet.render_strategy', $config['snippet']['render_strategy']);
     }
