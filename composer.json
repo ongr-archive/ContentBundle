@@ -22,9 +22,6 @@
         "ongr/ongr-strict-standard": "~1.0.0-beta",
         "tedivm/stash-bundle": "0.3.*"
     },
-    "suggest": {
-        "ongr/router-bundle": "Adds SEO friendly URLs"
-    },
     "autoload": {
         "psr-4": { "ONGR\\ContentBundle\\": "" }
     }
