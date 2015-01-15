@@ -11,19 +11,19 @@
 
 namespace ONGR\ContentBundle\Tests\Unit\Document;
 
-use ONGR\ContentBundle\Document\Traits\ProductTrait;
+use ONGR\ContentBundle\Document\AbstractProductDocument;
 
 /**
  * Provides tests for product document.
  */
-class ProductTraitTest extends \PHPUnit_Framework_TestCase
+class AbstractProductDocumentTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Provides data for testProductTrait().
+     * Provides data for testProductDocument().
      *
      * @return array
      */
-    public function productTraitDataProvider()
+    public function productDocumentDataProvider()
     {
         $data = [
             [
@@ -50,16 +50,16 @@ class ProductTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests product trait.
+     * Tests product document.
      *
      * @param array $data
      *
-     * @dataProvider productTraitDataProvider()
+     * @dataProvider productDocumentDataProvider()
      */
-    public function testProductTrait(array $data)
+    public function testProductDocument(array $data)
     {
-        /** @var ProductTrait $product */
-        $product = $this->getMockForTrait('ONGR\\ContentBundle\\Document\\Traits\\ProductTrait');
+        /** @var AbstractProductDocument $product */
+        $product = $this->getMockForAbstractClass('ONGR\ContentBundle\Document\AbstractProductDocument');
         $product->setTitle($data['title']);
         $this->assertEquals($data['title'], $product->getTitle());
 

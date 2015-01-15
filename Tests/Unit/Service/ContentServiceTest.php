@@ -13,6 +13,8 @@ namespace ONGR\ContentBundle\Tests\Unit\Service;
 
 use ONGR\ContentBundle\Service\ContentService;
 use ONGR\ElasticsearchBundle\DSL\Query\TermQuery;
+use ONGR\ElasticsearchBundle\ORM\Repository;
+use Psr\Log\LoggerInterface;
 
 class ContentServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -30,6 +32,7 @@ class ContentServiceTest extends \PHPUnit_Framework_TestCase
                 'must'
             );
 
+        /** @var Repository|\PHPUnit_Framework_MockObject_MockObject $repositoryMock */
         $repositoryMock = $this
             ->getMockBuilder('ElasticsearchBundle\ORM\Repository')
             ->disableOriginalConstructor()
@@ -67,6 +70,7 @@ class ContentServiceTest extends \PHPUnit_Framework_TestCase
                 'must'
             );
 
+        /** @var Repository|\PHPUnit_Framework_MockObject_MockObject $repositoryMock */
         $repositoryMock = $this
             ->getMockBuilder('ElasticsearchBundle\ORM\Repository')
             ->disableOriginalConstructor()
@@ -84,7 +88,8 @@ class ContentServiceTest extends \PHPUnit_Framework_TestCase
             ->with()
             ->will($this->returnValue(new \ArrayIterator([])));
 
-        $loggerMock = $this->getMock('Psr\\Log\\LoggerInterface');
+        /** @var LoggerInterface|\PHPUnit_Framework_MockObject_MockObject $loggerMock */
+        $loggerMock = $this->getMock('Psr\Log\LoggerInterface');
         $loggerMock
             ->expects($this->once())
             ->method('warning')

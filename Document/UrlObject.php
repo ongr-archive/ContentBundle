@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace ONGR\ContentBundle\Document\Traits;
+namespace ONGR\ContentBundle\Document;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
 
 /**
- * Trait used for documents which require UrlObject standard fields.
+ * Object used for documents which require UrlObject standard fields.
  *
- * @deprecated Will be removed in stable version. Use UrlObject instead.
+ * @ES\Object
  */
-trait UrlObjectTrait
+class UrlObject
 {
     /**
      * @var string

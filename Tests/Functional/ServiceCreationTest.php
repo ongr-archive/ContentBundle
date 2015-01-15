@@ -46,7 +46,7 @@ class ServiceCreationTest extends WebTestCase
         return [
             [
                 'ongr_content.category_service',
-                'ONGR\\ContentBundle\\Service\\CategoryService',
+                'ONGR\ContentBundle\Service\CategoryService',
             ],
         ];
     }

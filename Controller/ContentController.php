@@ -16,8 +16,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller for content pages.
- *
- * @SuppressWarnings(UnusedFormalParameter)
  */
 class ContentController extends Controller
 {

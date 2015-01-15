@@ -15,6 +15,8 @@ use ONGR\ContentBundle\Twig\ContentExtension;
 use ONGR\ElasticsearchBundle\Test\ElasticsearchTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
+use Symfony\Component\Routing\RouterInterface;
 
 class ContentExtensionsTest extends ElasticsearchTestCase
 {
@@ -89,8 +91,10 @@ class ContentExtensionsTest extends ElasticsearchTestCase
             $requestStack->push($request);
         }
 
+        /** @var FragmentHandler $handler */
         $handler = $this->getContainer()->get('fragment.handler');
         $handler->setRequest($request);
+        /** @var RouterInterface $router */
         $router = $this->getContainer()->get('router');
 
         $repository = $this->getManager()->getRepository('AcmeTestBundle:Content');

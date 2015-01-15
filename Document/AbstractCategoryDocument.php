@@ -9,15 +9,23 @@
  * file that was distributed with this source code.
  */
 
-namespace ONGR\ContentBundle\Document\Traits;
+namespace ONGR\ContentBundle\Document;
+
+use ONGR\ElasticsearchBundle\Annotation as ES;
+use ONGR\ElasticsearchBundle\Document\DocumentInterface;
+use ONGR\ElasticsearchBundle\Document\DocumentTrait;
+use ONGR\RouterBundle\Document\SeoAwareTrait;
 
 /**
- * Trait used for documents which require Category standard fields.
+ * Category document with standard fields.
  *
- * @deprecated Will be removed in stable version. Use AbstractCategoryDocument instead.
+ * @ES\Document(create=false)
  */
-trait CategoryTrait
+abstract class AbstractCategoryDocument implements DocumentInterface
 {
+    use DocumentTrait;
+    use SeoAwareTrait;
+
     /**
      * @var string
      *
@@ -90,7 +98,7 @@ trait CategoryTrait
     private $breadcrumbs;
 
     /**
-     * @var CategoryTrait[]|\Iterator
+     * @var AbstractCategoryDocument[]|\Iterator
      */
     private $children;
 
@@ -123,7 +131,7 @@ trait CategoryTrait
     }
 
     /**
-     * @param CategoryTrait[]|\Iterator $children
+     * @param AbstractCategoryDocument[]|\Iterator $children
      */
     public function setChildren($children)
     {
@@ -131,7 +139,7 @@ trait CategoryTrait
     }
 
     /**
-     * @return CategoryTrait[]|\Iterator
+     * @return AbstractCategoryDocument[]|\Iterator
      */
     public function getChildren()
     {
@@ -151,8 +159,8 @@ trait CategoryTrait
     /**
      * If key is null value is put to the end.
      *
-     * @param CategoryTrait[]|\Iterator $value
-     * @param string                    $key
+     * @param AbstractCategoryDocument|\Iterator $value
+     * @param string                             $key
      */
     public function setChild($value, $key = null)
     {
@@ -166,7 +174,7 @@ trait CategoryTrait
     /**
      * Adds child to the end of children array.
      *
-     * @param CategoryTrait[]|\Iterator $value
+     * @param AbstractCategoryDocument|\Iterator $value
      */
     public function addChild($value)
     {

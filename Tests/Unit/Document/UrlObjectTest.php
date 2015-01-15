@@ -11,19 +11,19 @@
 
 namespace ONGR\ContentBundle\Tests\Unit\Document;
 
-use ONGR\ContentBundle\Document\Traits\UrlObjectTrait;
+use ONGR\ContentBundle\Document\UrlObject;
 
 /**
  * Provides tests for url object.
  */
-class UrlObjectTraitTest extends \PHPUnit_Framework_TestCase
+class UrlObjectTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Provides data for testUrlTrait().
+     * Provides data for testUrlObject().
      *
      * @return array
      */
-    public function urlTraitDataProvider()
+    public function urlObjectDataProvider()
     {
         $data = [
             [
@@ -44,16 +44,16 @@ class UrlObjectTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests url trait.
+     * Tests url object.
      *
      * @param array $data
      *
-     * @dataProvider urlTraitDataProvider()
+     * @dataProvider urlObjectDataProvider()
      */
-    public function testUrlTrait(array $data)
+    public function testUrlObject(array $data)
     {
-        /** @var UrlObjectTrait $url */
-        $url = $this->getMockForTrait('ONGR\\ContentBundle\\Document\\Traits\\UrlObjectTrait');
+        /** @var UrlObject $url */
+        $url = $this->getMock('ONGR\ContentBundle\Document\UrlObject', null);
         $url->setUrl($data['url']);
         $this->assertEquals($data['url'], $url->getUrl());
 

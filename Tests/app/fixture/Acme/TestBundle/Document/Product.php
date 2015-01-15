@@ -11,18 +11,14 @@
 
 namespace ONGR\ContentBundle\Tests\app\fixture\Acme\TestBundle\Document;
 
-use ONGR\ContentBundle\Document\Traits\ProductTrait;
+use ONGR\ContentBundle\Document\AbstractProductDocument;
 use ONGR\ElasticsearchBundle\Annotation as ES;
-use ONGR\ElasticsearchBundle\Document\DocumentInterface;
-use ONGR\ElasticsearchBundle\Document\DocumentTrait;
 
 /**
  * Dummy product document.
  *
  * @ES\Document(type="product")
  */
-class Product implements DocumentInterface
+class Product extends AbstractProductDocument
 {
-    use DocumentTrait;
-    use ProductTrait;
 }

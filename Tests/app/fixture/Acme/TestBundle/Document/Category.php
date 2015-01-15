@@ -11,20 +11,37 @@
 
 namespace ONGR\ContentBundle\Tests\app\fixture\Acme\TestBundle\Document;
 
+use ONGR\ContentBundle\Document\AbstractCategoryDocument;
+use ONGR\ContentBundle\Document\CdnObject;
+use ONGR\ContentBundle\Document\ImageNested;
+use ONGR\ContentBundle\Document\UrlObject;
 use ONGR\ElasticsearchBundle\Annotation as ES;
-use ONGR\ElasticsearchBundle\Document\DocumentInterface;
-use ONGR\ElasticsearchBundle\Document\DocumentTrait;
-use ONGR\ContentBundle\Document\Traits\CategoryTrait;
-use ONGR\RouterBundle\Document\SeoAwareTrait;
 
 /**
  * Dummy category document.
  *
  * @ES\Document(type="category")
  */
-class Category implements DocumentInterface
+class Category extends AbstractCategoryDocument
 {
-    use DocumentTrait;
-    use CategoryTrait;
-    use SeoAwareTrait;
+    /**
+     * @var UrlObject[]|\Iterator
+     *
+     * @ES\Property(name="urls", type="object", objectName="ONGRContentBundle:UrlObject", multiple=true)
+     */
+    public $dummyUrls;
+
+    /**
+     * @var CdnObject[]|\Iterator
+     *
+     * @ES\Property(name="cdn_urls", type="object", objectName="ONGRContentBundle:CdnObject", multiple=true)
+     */
+    public $dummyCdnUrls;
+
+    /**
+     * @var ImageNested[]|\Iterator
+     *
+     * @ES\Property(name="images", type="nested", objectName="ONGRContentBundle:ImageNested", multiple=true)
+     */
+    public $dummyImagesNested;
 }

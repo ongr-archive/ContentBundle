@@ -13,6 +13,8 @@ namespace ONGR\ContentBundle\Tests\Unit\Twig;
 
 use ONGR\ContentBundle\Twig\ContentExtension;
 use ONGR\ElasticsearchBundle\ORM\Manager;
+use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Provides tests for content extension.
@@ -217,21 +219,21 @@ class ContentExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject
+     * @return FragmentHandler|\PHPUnit_Framework_MockObject_MockObject
      */
     protected function getFragmentHandlerMock()
     {
         return $this->getMock(
-            'Symfony\\Component\\HttpKernel\\Fragment\\FragmentHandler',
+            'Symfony\Component\HttpKernel\Fragment\FragmentHandler',
             ['render']
         );
     }
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject
+     * @return RouterInterface|\PHPUnit_Framework_MockObject_MockObject
      */
     protected function getRouterMock()
     {
-        return $this->getMock('Symfony\\Component\\Routing\\RouterInterface');
+        return $this->getMock('Symfony\Component\Routing\RouterInterface');
     }
 }

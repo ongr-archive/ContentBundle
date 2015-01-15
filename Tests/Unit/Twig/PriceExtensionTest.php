@@ -15,6 +15,7 @@ use ONGR\ContentBundle\Service\Currency\CurrencyExchangeService;
 use ONGR\ContentBundle\Service\Currency\CurrencyRatesService;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use ONGR\ContentBundle\Twig\PriceExtension;
+use Twig_Environment;
 
 class PriceExtensionTest extends WebTestCase
 {
@@ -424,6 +425,8 @@ class PriceExtensionTest extends WebTestCase
         $exchangeService = new CurrencyExchangeService($this->getRatesService($rates, 'EUR'), 'EUR');
         $extension = new PriceExtension('EUR', '.', '', 'EUR', $formatMap, $toPrintList);
         $extension->setCurrencyExchangeService($exchangeService);
+
+        /** @var Twig_Environment|\PHPUnit_Framework_MockObject_MockObject $env */
         $env = $this->getMock('stdClass', ['render']);
         $env->expects($this->once())->method('render')->with(
             'testTemplate',
@@ -503,7 +506,7 @@ class PriceExtensionTest extends WebTestCase
      * @param array $rates
      * @param array $toPrintList
      * @param array $currency
-     * @param array $price
+     * @param float $price
      * @param array $expectedParams
      *
      * @dataProvider testPriceListWithCurrencyData
@@ -513,6 +516,8 @@ class PriceExtensionTest extends WebTestCase
         $exchangeService = new CurrencyExchangeService($this->getRatesService($rates, 'EUR'), 'EUR');
         $extension = new PriceExtension('', '.', '', $currency, null, $toPrintList);
         $extension->setCurrencyExchangeService($exchangeService);
+
+        /** @var Twig_Environment|\PHPUnit_Framework_MockObject_MockObject $env */
         $env = $this->getMock('stdClass', ['render']);
         $env->expects($this->once())->method('render')->with(
             'testTemplate',
@@ -550,6 +555,8 @@ class PriceExtensionTest extends WebTestCase
                 ],
             ],
         ];
+
+        /** @var Twig_Environment|\PHPUnit_Framework_MockObject_MockObject $env */
         $env = $this->getMock('stdClass', ['render']);
         $env->expects($this->once())->method('render')->with(
             'testTemplate',
@@ -595,6 +602,8 @@ class PriceExtensionTest extends WebTestCase
                 ],
             ],
         ];
+
+        /** @var Twig_Environment|\PHPUnit_Framework_MockObject_MockObject $env */
         $env = $this->getMock('stdClass', ['render']);
         $env->expects($this->once())->method('render')->with(
             'testTemplate',
@@ -634,6 +643,8 @@ class PriceExtensionTest extends WebTestCase
                 ],
             ],
         ];
+
+        /** @var Twig_Environment|\PHPUnit_Framework_MockObject_MockObject $env */
         $env = $this->getMock('stdClass', ['render']);
         $env->expects($this->once())->method('render')->with(
             'testTemplate',

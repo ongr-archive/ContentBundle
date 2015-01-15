@@ -11,19 +11,19 @@
 
 namespace ONGR\ContentBundle\Tests\Unit\Document;
 
-use ONGR\ContentBundle\Document\Traits\ContentTrait;
+use ONGR\ContentBundle\Document\AbstractContentDocument;
 
 /**
  * Provides tests for content document.
  */
-class ContentTraitTest extends \PHPUnit_Framework_TestCase
+class AbstractContentDocumentTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Provides data for testContentTrait().
+     * Provides data for testContentDocument().
      *
      * @return array
      */
-    public function contentTraitDataProvider()
+    public function contentDocumentDataProvider()
     {
         $data = [
             [
@@ -46,16 +46,16 @@ class ContentTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests content trait.
+     * Tests content document.
      *
      * @param array $data
      *
-     * @dataProvider contentTraitDataProvider()
+     * @dataProvider contentDocumentDataProvider()
      */
-    public function testContentTrait(array $data)
+    public function testContentDocument(array $data)
     {
-        /** @var ContentTrait $content */
-        $content = $this->getMockForTrait('ONGR\\ContentBundle\\Document\\Traits\\ContentTrait');
+        /** @var AbstractContentDocument $content */
+        $content = $this->getMockForAbstractClass('ONGR\ContentBundle\Document\AbstractContentDocument');
         $content->setSlug($data['slug']);
         $this->assertEquals($data['slug'], $content->getSlug());
 

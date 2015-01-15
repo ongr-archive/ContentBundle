@@ -204,7 +204,7 @@ class PriceExtension extends \Twig_Extension implements LoggerAwareInterface
      * Returns specified prices formatted by a specified template.
      *
      * @param \Twig_Environment $environment
-     * @param int               $price
+     * @param float             $price
      * @param string            $template
      * @param null              $fromCurrency
      *

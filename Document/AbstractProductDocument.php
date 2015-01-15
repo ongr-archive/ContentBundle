@@ -9,17 +9,21 @@
  * file that was distributed with this source code.
  */
 
-namespace ONGR\ContentBundle\Document\Traits;
+namespace ONGR\ContentBundle\Document;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
+use ONGR\ElasticsearchBundle\Document\DocumentInterface;
+use ONGR\ElasticsearchBundle\Document\DocumentTrait;
 
 /**
- * Trait used for documents which require Product standard fields.
+ * Product document with standard fields.
  *
- * @deprecated Will be removed in stable version. Use AbstractProductDocument instead.
+ * @ES\Document(create=false)
  */
-trait ProductTrait
+abstract class AbstractProductDocument implements DocumentInterface
 {
+    use DocumentTrait;
+
     /**
      * @var string
      *

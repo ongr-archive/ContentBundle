@@ -11,19 +11,19 @@
 
 namespace ONGR\ContentBundle\Tests\Unit\Document;
 
-use ONGR\ContentBundle\Document\Traits\CategoryTrait;
+use ONGR\ContentBundle\Document\AbstractCategoryDocument;
 
 /**
- * Provides tests for category trait.
+ * Provides tests for category document.
  */
-class CategoryTraitTest extends \PHPUnit_Framework_TestCase
+class AbstractCategoryDocumentTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Provides data for testCategoryTrait().
+     * Provides data for testCategoryDocument().
      *
      * @return array
      */
-    public function categoryTraitDataProvider()
+    public function categoryDocumentDataProvider()
     {
         $catData = [
             [
@@ -33,7 +33,7 @@ class CategoryTraitTest extends \PHPUnit_Framework_TestCase
                     'left' => 2,
                     'right' => 5,
                     'level' => 2,
-                    'parent_id' => 'oxrootid',
+                    'parent_id' => 'testrootid',
                     'hidden' => false,
                     'title' => 'cat1',
                     'expanded' => false,
@@ -48,7 +48,7 @@ class CategoryTraitTest extends \PHPUnit_Framework_TestCase
                     'left' => 2,
                     'right' => 5,
                     'level' => 3,
-                    'parent_id' => 'oxrootid',
+                    'parent_id' => 'testrootid',
                     'hidden' => true,
                     'title' => 'cat2',
                     'expanded' => true,
@@ -62,16 +62,16 @@ class CategoryTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests Category trait.
+     * Tests Category document.
      *
      * @param array $data
      *
-     * @dataProvider categoryTraitDataProvider()
+     * @dataProvider categoryDocumentDataProvider()
      */
-    public function testCategoryTrait(array $data)
+    public function testCategoryDocument(array $data)
     {
-        /** @var CategoryTrait $cat */
-        $cat = $this->getMockForTrait('ONGR\\ContentBundle\\Document\\Traits\\CategoryTrait');
+        /** @var AbstractCategoryDocument $cat */
+        $cat = $this->getMockForAbstractClass('ONGR\ContentBundle\Document\AbstractCategoryDocument');
         $cat->setActive($data['active']);
         $this->assertEquals($data['active'], $cat->isActive());
         $this->assertEquals($data['active'], $cat->getActive());
@@ -115,8 +115,8 @@ class CategoryTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(false, $cat->hasChildren());
         $this->assertEquals(false, $cat->hasVisibleChildren());
 
-        /** @var CategoryTrait $cat2 */
-        $cat2 = $this->getMockForTrait('ONGR\\ContentBundle\\Document\\Traits\\CategoryTrait');
+        /** @var AbstractCategoryDocument $cat2 */
+        $cat2 = $this->getMockForAbstractClass('ONGR\ContentBundle\Document\AbstractCategoryDocument');
         $cat2->setHidden(false);
         $cat->addChild($cat2);
         $this->assertEquals(true, $cat->hasVisibleChildren());
@@ -124,8 +124,8 @@ class CategoryTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(false, $cat2->isHidden());
         $this->assertEquals(false, $cat2->getHidden());
 
-        /** @var CategoryTrait $cat3 */
-        $cat3 = $this->getMockForTrait('ONGR\\ContentBundle\\Document\\Traits\\CategoryTrait');
+        /** @var AbstractCategoryDocument $cat3 */
+        $cat3 = $this->getMockForAbstractClass('ONGR\ContentBundle\Document\AbstractCategoryDocument');
         $cat3->setHidden(true);
         $cat2->addChild($cat3);
         $this->assertEquals(false, $cat2->hasVisibleChildren());
