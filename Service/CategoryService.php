@@ -80,7 +80,7 @@ class CategoryService
         $search = $this->repository->createSearch();
         $search->setSize($this->limit);
         $search->addSort(new Sort('left', Sort::ORDER_ASC));
-        $search->addQuery(new TermQuery('is_active', true), 'must');
+        $search->addQuery(new TermQuery('active', true), 'must');
         if (!$this->loadHiddenCategories) {
             $search->addQuery(new TermQuery('is_hidden', 0), 'must');
         }
