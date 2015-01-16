@@ -35,7 +35,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'category' => [
                     [
                         '_id' => 'cat1',
-                        'is_active' => true,
+                        'active' => true,
                         'sort' => 1,
                         'left' => 2,
                         'parent_id' => $this->rootId,
@@ -44,7 +44,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                     ],
                     [
                         '_id' => 'cat2',
-                        'is_active' => true,
+                        'active' => true,
                         'sort' => 2,
                         'left' => 8,
                         'parent_id' => $this->rootId,
@@ -53,7 +53,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                     ],
                     [
                         '_id' => 'cat3',
-                        'is_active' => true,
+                        'active' => true,
                         'sort' => 1,
                         'left' => 1,
                         'parent_id' => $this->rootId,
@@ -64,7 +64,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                     ],
                     [
                         '_id' => 'cat4',
-                        'is_active' => true,
+                        'active' => true,
                         'sort' => 1,
                         'left' => 3,
                         'parent_id' => $this->rootId,
@@ -73,7 +73,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                     ],
                     [
                         '_id' => 'cat41',
-                        'is_active' => true,
+                        'active' => true,
                         'sort' => 1,
                         'left' => 4,
                         'parent_id' => 'cat4',
@@ -82,7 +82,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                     ],
                     [
                         '_id' => 'cat42',
-                        'is_active' => true,
+                        'active' => true,
                         'sort' => 1,
                         'left' => 5,
                         'parent_id' => 'cat4',
@@ -91,7 +91,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                     ],
                     [
                         '_id' => 'cat421',
-                        'is_active' => true,
+                        'active' => true,
                         'sort' => 2,
                         'left' => 7,
                         'parent_id' => 'cat42',
@@ -100,7 +100,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                     ],
                     [
                         '_id' => 'cat422',
-                        'is_active' => true,
+                        'active' => true,
                         'sort' => 1,
                         'left' => 6,
                         'parent_id' => 'cat42',
@@ -109,7 +109,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                     ],
                     [
                         '_id' => 'cat5',
-                        'is_active' => true,
+                        'active' => true,
                         'sort' => 1,
                         'left' => 3,
                         'parent_id' => $this->rootId,
@@ -118,7 +118,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                     ],
                     [
                         '_id' => 'cat6',
-                        'is_active' => true,
+                        'active' => true,
                         'sort' => 1,
                         'left' => 9,
                         'parent_id' => $this->rootId,
@@ -178,7 +178,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
     {
         $cat = new Category();
         $cat->setId($category['id']);
-        $cat->setActive($category['is_active']);
+        $cat->setActive($category['active']);
         $cat->setSort($category['sort']);
         $cat->setLeft($category['left']);
         $cat->setParentId($category['parent_id']);
@@ -200,7 +200,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $catData = [
             [
                 'id' => 'cat1',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 1,
                 'left' => 2,
                 'parent_id' => $this->rootId,
@@ -209,7 +209,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
             ],
             [
                 'id' => 'cat2',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 2,
                 'left' => 8,
                 'parent_id' => $this->rootId,
@@ -218,7 +218,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
             ],
             [
                 'id' => 'cat3',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 1,
                 'left' => 1,
                 'parent_id' => $this->rootId,
@@ -229,7 +229,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
             ],
             [
                 'id' => 'cat4',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 1,
                 'left' => 3,
                 'parent_id' => $this->rootId,
@@ -238,7 +238,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
             ],
             [
                 'id' => 'cat41',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 1,
                 'left' => 4,
                 'parent_id' => 'cat4',
@@ -247,7 +247,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
             ],
             [
                 'id' => 'cat42',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 1,
                 'left' => 5,
                 'parent_id' => 'cat4',
@@ -256,7 +256,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
             ],
             [
                 'id' => 'cat421',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 2,
                 'left' => 7,
                 'parent_id' => 'cat42',
@@ -265,7 +265,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
             ],
             [
                 'id' => 'cat422',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 1,
                 'left' => 6,
                 'parent_id' => 'cat42',
@@ -274,7 +274,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
             ],
             [
                 'id' => 'cat5',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 1,
                 'left' => 3,
                 'parent_id' => $this->rootId,
@@ -283,7 +283,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
             ],
             [
                 'id' => 'cat6',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 1,
                 'left' => 9,
                 'parent_id' => $this->rootId,
@@ -380,7 +380,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $cat1 = $this->buildCategory(
             [
                 'id' => 'cat1',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 1,
                 'left' => 2,
                 'parent_id' => $this->rootId,
@@ -407,7 +407,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $cat2 = $this->buildCategory(
             [
                 'id' => 'cat2',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 2,
                 'left' => 8,
                 'parent_id' => $this->rootId,
@@ -418,7 +418,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $cat3 = $this->buildCategory(
             [
                 'id' => 'cat3',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 1,
                 'left' => 1,
                 'parent_id' => $this->rootId,
@@ -431,7 +431,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $cat4 = $this->buildCategory(
             [
                 'id' => 'cat4',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 1,
                 'left' => 3,
                 'parent_id' => $this->rootId,
@@ -442,7 +442,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $cat41 = $this->buildCategory(
             [
                 'id' => 'cat41',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 1,
                 'left' => 4,
                 'parent_id' => 'cat4',
@@ -453,7 +453,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $cat42 = $this->buildCategory(
             [
                 'id' => 'cat42',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 1,
                 'left' => 5,
                 'parent_id' => 'cat4',
@@ -464,7 +464,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $cat421 = $this->buildCategory(
             [
                 'id' => 'cat421',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 2,
                 'left' => 7,
                 'parent_id' => 'cat42',
@@ -548,7 +548,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
         $rawData = [
             [
                 'id' => 'cat1',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 1,
                 'left' => 2,
                 'parent_id' => $this->rootId,
@@ -557,7 +557,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
             ],
             [
                 'id' => 'cat2',
-                'is_active' => true,
+                'active' => true,
                 'sort' => 2,
                 'left' => 8,
                 'parent_id' => $this->rootId,

@@ -36,7 +36,7 @@ abstract class AbstractCategoryDocument implements DocumentInterface
     /**
      * @var bool
      *
-     * @ES\Property(type="boolean", name="is_active")
+     * @ES\Property(type="boolean", name="active")
      */
     protected $active;
 
