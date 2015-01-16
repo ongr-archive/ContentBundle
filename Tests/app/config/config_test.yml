@@ -38,6 +38,7 @@ ongr_content:
             product: es.manager.default.product
             content: es.manager.default.content
             category: es.manager.default.category
+    category_root_id: 'root_id'
 
 ongr_router:
     es_manager: default

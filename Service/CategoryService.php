@@ -24,12 +24,15 @@ use ONGR\ElasticsearchBundle\Result\DocumentIterator;
  */
 class CategoryService
 {
-    const ROOT_CATEGORY_ID = 'category_root_id';
-
     /**
      * @var Repository
      */
     private $repository;
+
+    /**
+     * @var string
+     */
+    private $rootId;
 
     /**
      * @var array
@@ -58,10 +61,12 @@ class CategoryService
 
     /**
      * @param Repository $repository
+     * @param string     $rootId
      */
-    public function __construct(Repository $repository)
+    public function __construct(Repository $repository, $rootId)
     {
         $this->repository = $repository;
+        $this->rootId = $rootId;
     }
 
     /**
@@ -148,7 +153,7 @@ class CategoryService
 
         $references[$node->getId()] = $node;
 
-        if ($node->getParentId() == self::ROOT_CATEGORY_ID) {
+        if ($node->getParentId() == $this->rootId) {
             $this->buildRootNode($node, $tree, 1);
         } else {
             $this->buildChildNode($node, $references, $maxLevel);

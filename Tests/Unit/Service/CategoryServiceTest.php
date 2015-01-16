@@ -21,6 +21,11 @@ use ONGR\ElasticsearchBundle\Test\ElasticsearchTestCase;
 class CategoryServiceTest extends ElasticsearchTestCase
 {
     /**
+     * @var string
+     */
+    private $rootId = 'root_id';
+
+    /**
      * {@inheritdoc}
      */
     protected function getDataArray()
@@ -33,7 +38,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                         'is_active' => true,
                         'sort' => 1,
                         'left' => 2,
-                        'parent_id' => CategoryService::ROOT_CATEGORY_ID,
+                        'parent_id' => $this->rootId,
                         'level' => 1,
                         'is_hidden' => false,
                     ],
@@ -42,7 +47,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                         'is_active' => true,
                         'sort' => 2,
                         'left' => 8,
-                        'parent_id' => CategoryService::ROOT_CATEGORY_ID,
+                        'parent_id' => $this->rootId,
                         'level' => 1,
                         'is_hidden' => false,
                     ],
@@ -51,7 +56,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                         'is_active' => true,
                         'sort' => 1,
                         'left' => 1,
-                        'parent_id' => CategoryService::ROOT_CATEGORY_ID,
+                        'parent_id' => $this->rootId,
                         'level' => 1,
                         'is_current' => true,
                         'is_expanded' => true,
@@ -62,7 +67,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                         'is_active' => true,
                         'sort' => 1,
                         'left' => 3,
-                        'parent_id' => CategoryService::ROOT_CATEGORY_ID,
+                        'parent_id' => $this->rootId,
                         'level' => 1,
                         'is_hidden' => false,
                     ],
@@ -107,7 +112,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                         'is_active' => true,
                         'sort' => 1,
                         'left' => 3,
-                        'parent_id' => CategoryService::ROOT_CATEGORY_ID,
+                        'parent_id' => $this->rootId,
                         'level' => 1,
                         'is_hidden' => false,
                     ],
@@ -116,7 +121,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                         'is_active' => true,
                         'sort' => 1,
                         'left' => 9,
-                        'parent_id' => CategoryService::ROOT_CATEGORY_ID,
+                        'parent_id' => $this->rootId,
                         'level' => 1,
                         'is_hidden' => false,
                     ],
@@ -153,7 +158,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
     {
         $repository = $this->getManager()->getRepository('AcmeTestBundle:Category');
 
-        $service = new CategoryService($repository);
+        $service = new CategoryService($repository, $this->rootId);
         $service->setRepository($repository);
 
         $id = 'testid';
@@ -198,7 +203,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'is_active' => true,
                 'sort' => 1,
                 'left' => 2,
-                'parent_id' => CategoryService::ROOT_CATEGORY_ID,
+                'parent_id' => $this->rootId,
                 'level' => 1,
                 'is_hidden' => false,
             ],
@@ -207,7 +212,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'is_active' => true,
                 'sort' => 2,
                 'left' => 8,
-                'parent_id' => CategoryService::ROOT_CATEGORY_ID,
+                'parent_id' => $this->rootId,
                 'level' => 1,
                 'is_hidden' => false,
             ],
@@ -216,7 +221,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'is_active' => true,
                 'sort' => 1,
                 'left' => 1,
-                'parent_id' => CategoryService::ROOT_CATEGORY_ID,
+                'parent_id' => $this->rootId,
                 'level' => 1,
                 'is_current' => true,
                 'is_expanded' => true,
@@ -227,7 +232,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'is_active' => true,
                 'sort' => 1,
                 'left' => 3,
-                'parent_id' => CategoryService::ROOT_CATEGORY_ID,
+                'parent_id' => $this->rootId,
                 'level' => 1,
                 'is_hidden' => false,
             ],
@@ -272,7 +277,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'is_active' => true,
                 'sort' => 1,
                 'left' => 3,
-                'parent_id' => CategoryService::ROOT_CATEGORY_ID,
+                'parent_id' => $this->rootId,
                 'level' => 1,
                 'is_hidden' => false,
             ],
@@ -281,7 +286,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'is_active' => true,
                 'sort' => 1,
                 'left' => 9,
-                'parent_id' => CategoryService::ROOT_CATEGORY_ID,
+                'parent_id' => $this->rootId,
                 'level' => 1,
                 'is_hidden' => false,
             ],
@@ -293,7 +298,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
             $data[$category['id']] = $this->buildCategory($category);
         }
         foreach ($catData as $category) {
-            if ($category['parent_id'] == CategoryService::ROOT_CATEGORY_ID) {
+            if ($category['parent_id'] == $this->rootId) {
                 continue;
             }
             $data[$category['id']]->setParent($data[$category['parent_id']]);
@@ -314,7 +319,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
     {
         $repository = $this->getManager()->getRepository('AcmeTestBundle:Category');
 
-        $service = new CategoryService($repository);
+        $service = new CategoryService($repository, $this->rootId);
 
         $service->setCurrentCategoryId('cat3');
         $service->getCurrentCategoryDocument();
@@ -345,7 +350,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
      */
     public function testGetCurrentCategoryDocument(array $data)
     {
-        $service = new CategoryService($this->getManager()->getRepository('AcmeTestBundle:Category'));
+        $service = new CategoryService($this->getManager()->getRepository('AcmeTestBundle:Category'), $this->rootId);
         $service->setCurrentCategoryId('cat42');
 
         $leaf = $service->getCurrentCategoryDocument();
@@ -378,7 +383,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'is_active' => true,
                 'sort' => 1,
                 'left' => 2,
-                'parent_id' => CategoryService::ROOT_CATEGORY_ID,
+                'parent_id' => $this->rootId,
                 'level' => 1,
             ]
         );
@@ -405,7 +410,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'is_active' => true,
                 'sort' => 2,
                 'left' => 8,
-                'parent_id' => CategoryService::ROOT_CATEGORY_ID,
+                'parent_id' => $this->rootId,
                 'level' => 1,
             ]
         );
@@ -416,7 +421,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'is_active' => true,
                 'sort' => 1,
                 'left' => 1,
-                'parent_id' => CategoryService::ROOT_CATEGORY_ID,
+                'parent_id' => $this->rootId,
                 'level' => 1,
                 'is_current' => true,
                 'is_expanded' => true,
@@ -429,7 +434,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'is_active' => true,
                 'sort' => 1,
                 'left' => 3,
-                'parent_id' => CategoryService::ROOT_CATEGORY_ID,
+                'parent_id' => $this->rootId,
                 'level' => 1,
             ]
         );
@@ -546,7 +551,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'is_active' => true,
                 'sort' => 1,
                 'left' => 2,
-                'parent_id' => CategoryService::ROOT_CATEGORY_ID,
+                'parent_id' => $this->rootId,
                 'level' => 1,
                 'is_hidden' => false,
             ],
@@ -555,7 +560,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
                 'is_active' => true,
                 'sort' => 2,
                 'left' => 8,
-                'parent_id' => CategoryService::ROOT_CATEGORY_ID,
+                'parent_id' => $this->rootId,
                 'level' => 1,
                 'is_hidden' => false,
             ],
@@ -582,7 +587,7 @@ class CategoryServiceTest extends ElasticsearchTestCase
      */
     public function testGetCategory($categoryId, $category)
     {
-        $service = new CategoryService($this->getManager()->getRepository('AcmeTestBundle:Category'));
+        $service = new CategoryService($this->getManager()->getRepository('AcmeTestBundle:Category'), $this->rootId);
         $result = $service->getCategory($categoryId);
         $this->assertEquals($category, $result);
     }
