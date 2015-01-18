@@ -14,6 +14,7 @@ namespace ONGR\ContentBundle\Document;
 use ONGR\ElasticsearchBundle\Annotation as ES;
 use ONGR\ElasticsearchBundle\Document\DocumentInterface;
 use ONGR\ElasticsearchBundle\Document\DocumentTrait;
+use ONGR\RouterBundle\Document\SeoAwareTrait;
 
 /**
  * Product document with standard fields.
@@ -23,6 +24,7 @@ use ONGR\ElasticsearchBundle\Document\DocumentTrait;
 abstract class AbstractProductDocument implements DocumentInterface
 {
     use DocumentTrait;
+    use SeoAwareTrait;
 
     /**
      * @var string
