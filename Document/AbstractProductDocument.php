@@ -12,18 +12,16 @@
 namespace ONGR\ContentBundle\Document;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
-use ONGR\ElasticsearchBundle\Document\DocumentInterface;
-use ONGR\ElasticsearchBundle\Document\DocumentTrait;
 use ONGR\RouterBundle\Document\SeoAwareTrait;
+use ONGR\ElasticsearchBundle\Document\AbstractDocument;
 
 /**
  * Product document with standard fields.
  *
  * @ES\Document(create=false)
  */
-abstract class AbstractProductDocument implements DocumentInterface
+abstract class AbstractProductDocument extends AbstractDocument
 {
-    use DocumentTrait;
     use SeoAwareTrait;
 
     /**
