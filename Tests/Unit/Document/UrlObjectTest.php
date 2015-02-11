@@ -57,7 +57,7 @@ class UrlObjectTest extends \PHPUnit_Framework_TestCase
         $url->setUrl($data['url']);
         $this->assertEquals($data['url'], $url->getUrl());
 
-        $url->setUrlKey($data['key']);
-        $this->assertEquals($data['key'], $url->getUrlKey());
+        $url->setKey($data['key']);
+        $this->assertEquals($data['key'], $url->getKey());
     }
 }
