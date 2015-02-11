@@ -39,6 +39,7 @@ class AbstractCategoryDocumentTest extends \PHPUnit_Framework_TestCase
                     'expanded' => false,
                     'current' => false,
                     'breadcrumbs' => ['bc1' => 'bcrumb', 'bc3' => 'bcrumb3'],
+                    'children' => '1',
                 ],
             ],
             [
@@ -54,6 +55,7 @@ class AbstractCategoryDocumentTest extends \PHPUnit_Framework_TestCase
                     'expanded' => true,
                     'current' => true,
                     'breadcrumbs' => ['bc2' => 'bcrumb2', 'bc4' => 'bcrumb4'],
+                    'children' => '1',
                 ],
             ],
         ];
@@ -79,6 +81,8 @@ class AbstractCategoryDocumentTest extends \PHPUnit_Framework_TestCase
         foreach ($data['breadcrumbs'] as $key => $value) {
             $cat->setBreadcrumb($value, $key);
         }
+        $cat->setLevel(1);
+        $this->assertEquals(1, $cat->getLevel());
 
         $this->assertEquals($data['breadcrumbs'], $cat->getBreadcrumbs());
 
@@ -127,7 +131,7 @@ class AbstractCategoryDocumentTest extends \PHPUnit_Framework_TestCase
         /** @var AbstractCategoryDocument $cat3 */
         $cat3 = $this->getMockForAbstractClass('ONGR\ContentBundle\Document\AbstractCategoryDocument');
         $cat3->setHidden(true);
-        $cat2->addChild($cat3);
+        $cat3->setChild($cat3, '1');
         $this->assertEquals(false, $cat2->hasVisibleChildren());
     }
 }

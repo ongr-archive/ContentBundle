@@ -12,9 +12,9 @@
 namespace ONGR\ContentBundle\Tests\Functional\Service;
 
 use ONGR\ContentBundle\Service\ContentService;
-use ONGR\ElasticsearchBundle\Test\ElasticsearchTestCase;
+use ONGR\ElasticsearchBundle\Test\AbstractElasticsearchTestCase;
 
-class ContentServiceTest extends ElasticsearchTestCase
+class ContentServiceTest extends AbstractElasticsearchTestCase
 {
     /**
      * {@inheritdoc}
