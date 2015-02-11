@@ -12,57 +12,13 @@
 namespace ONGR\ContentBundle\Document;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
+use ONGR\RouterBundle\Document\UrlObject as ParentUrlObject;
 
 /**
  * Object used for documents which require UrlObject standard fields.
  *
  * @ES\Object
  */
-class UrlObject
+class UrlObject extends ParentUrlObject
 {
-    /**
-     * @var string
-     *
-     * @ES\Property(name="url", type="string")
-     */
-    private $url;
-
-    /**
-     * @var string
-     *
-     * @ES\Property(name="key", type="string", index="no")
-     */
-    private $urlKey;
-
-    /**
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
-    /**
-     * @param string $url
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-    }
-
-    /**
-     * @param string $urlKey
-     */
-    public function setUrlKey($urlKey)
-    {
-        $this->urlKey = $urlKey;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUrlKey()
-    {
-        return $this->urlKey;
-    }
 }
