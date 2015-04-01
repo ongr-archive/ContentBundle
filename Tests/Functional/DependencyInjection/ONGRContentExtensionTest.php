@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ONGR\ContentBundle\Tests\Functional\DependecyInjection;
+namespace ONGR\ContentBundle\Tests\Functional\DependencyInjection;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DependencyInjection\Exception\LogicException;
@@ -76,5 +76,37 @@ class ONGRContentExtensionTest extends WebTestCase
         if ($overwrite && $container->hasParameter($name)) {
             $container->setParameter($name, $overwriteValue);
         }
+    }
+
+    /**
+     * Data provider for testServices().
+     *
+     * @return array
+     */
+    public function getTestServicesData()
+    {
+        return [
+            ['twig.extension.stringloader', 'Twig_Extension_StringLoader'],
+            ['ongr_content.twig.content_extension', 'ONGR\ContentBundle\Twig\ContentExtension'],
+            ['ongr_content.content_service', 'ONGR\ContentBundle\Service\ContentService'],
+            ['ongr_content.category_service', 'ONGR\ContentBundle\Service\CategoryService'],
+            ['ongr_content.twig.category_extension', 'ONGR\ContentBundle\Twig\CategoryExtension'],
+        ];
+    }
+
+    /**
+     * Tests if services are being created.
+     *
+     * @param string $id       Service id.
+     * @param string $instance Service instance class name.
+     *
+     * @dataProvider getTestServicesData
+     */
+    public function testServices($id, $instance)
+    {
+        $container = self::createClient()->getContainer();
+
+        $this->assertTrue($container->has($id));
+        $this->assertInstanceOf($instance, $container->get($id));
     }
 }
