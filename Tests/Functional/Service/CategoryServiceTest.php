@@ -315,7 +315,11 @@ class CategoryServiceTest extends AbstractElasticsearchTestCase
             'cat2' => clone $data['cat2'],
         ];
 
-        $gotResult = $result->getArrayCopy();
+        $gotResult = [];
+        foreach ($result as $key => $value) {
+            $gotResult[$key] = clone $value;
+        }
+
         $this->assertEquals($expectedResult, $gotResult);
     }
 
