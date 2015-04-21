@@ -503,7 +503,9 @@ class CategoryServiceTest extends AbstractElasticsearchTestCase
      */
     public function testGetPartialTree($tree, $maxLevel, $categoryId, $expectedTree, $exception = '')
     {
-        /* @var CategoryService|\PHPUnit_Framework_MockObject_MockObject $categoryService */
+        /**
+         * @var CategoryService|\PHPUnit_Framework_MockObject_MockObject $categoryService
+         */
         $categoryService = $this->getMockBuilder('ONGR\ContentBundle\Service\CategoryService')
             ->disableOriginalConstructor()
             ->setMethods(['getTree'])
