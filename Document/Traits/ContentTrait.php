@@ -17,6 +17,7 @@ use ONGR\ElasticsearchBundle\Annotation as ES;
  * Trait used for documents which require Content standard fields.
  *
  * @deprecated Will be removed in stable version. Use AbstractContentDocument instead.
+ * @codeCoverageIgnore
  */
 trait ContentTrait
 {
