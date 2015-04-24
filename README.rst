@@ -11,16 +11,16 @@ ONGR Content bundle
 .. image:: https://scrutinizer-ci.com/g/ongr-io/ContentBundle/badges/coverage.png?b=master
     :target: https://scrutinizer-ci.com/g/ongr-io/ContentBundle/?branch=master
 
-.. image:: https://poser.pugx.org/ongr/content-bundle/downloads.svg
+.. image:: https://poser.pugx.org/ongr/content-bundle/downloads
     :target: https://packagist.org/packages/ongr/content-bundle
 
-.. image:: https://poser.pugx.org/ongr/content-bundle/v/stable.svg
+.. image:: https://poser.pugx.org/ongr/content-bundle/v/stable
     :target: https://packagist.org/packages/ongr/content-bundle
 
-.. image:: https://poser.pugx.org/ongr/content-bundle/v/unstable.svg
+.. image:: https://poser.pugx.org/ongr/content-bundle/v/unstable
     :target: https://packagist.org/packages/ongr/content-bundle
 
-.. image:: https://poser.pugx.org/ongr/content-bundle/license.svg
+.. image:: https://poser.pugx.org/ongr/content-bundle/license
     :target: https://packagist.org/packages/ongr/content-bundle
 
 Documentation
