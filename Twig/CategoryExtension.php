@@ -98,7 +98,7 @@ class CategoryExtension extends \Twig_Extension
     /**
      * Returns a list of functions to add to the existing list.
      *
-     * @return array An array of functions
+     * @return array An array of functions.
      */
     public function getFunctions()
     {
