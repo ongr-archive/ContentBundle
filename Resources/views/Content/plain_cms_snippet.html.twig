@@ -1,1 +1,1 @@
-{{ include(template_from_string(document.content)) }}
+{% if document is not empty %}{{ include(template_from_string(document.content)) }}{% endif %}
