@@ -49,14 +49,21 @@ class ContentExtensionsTest extends ElasticsearchTestCase
     {
         $out = [];
 
-        // Case #0: empty request.
+        // Case #0: no document.
+        $request = new Request();
+        $slug = 'non-existent-document-slug';
+        $expectedContent = null;
+
+        $out[] = [$request, $slug, $expectedContent];
+
+        // Case #1: empty request.
         $request = new Request();
         $slug = 'testContentSlug';
         $expectedContent = 'Content of test page';
 
         $out[] = [$request, $slug, $expectedContent];
 
-        // Case #1: esi request.
+        // Case #2: esi request.
         $request = new Request();
         $request->headers->add(
             [
@@ -65,7 +72,7 @@ class ContentExtensionsTest extends ElasticsearchTestCase
         );
         $slug = 'testContentSlug';
 
-        $expectedContent = '<esi:include';
+        $expectedContent = '<esi:include src="/_proxy/cmsSnippet/testContentSlug" />';
 
         $out[] = [$request, $slug, $expectedContent];
 
@@ -101,6 +108,6 @@ class ContentExtensionsTest extends ElasticsearchTestCase
 
         $extension = new ContentExtension($handler, $router, $strategy, $repository);
 
-        $this->assertContains($expectedContent, $extension->snippetFunction($slug));
+        $this->assertEquals($expectedContent, $extension->snippetFunction($slug));
     }
 }
