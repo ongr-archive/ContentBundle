@@ -56,10 +56,10 @@ In this example, we have set repositories which will be used to fetch data.
 Step 4: Adding category fields
 ------------------------------
 
-To let our services work with your documents you have to include CategoryTrait into your category document.
+To let our services work with your documents you have to extend AbstractCategoryDocument.php in your category document.
 
 ```php
-class Category
+class Category extends AbstractCategoryDocument
 {
     use CategoryTrait; 
     // Above adds public properties like: active, hidden, parentId, etc.
