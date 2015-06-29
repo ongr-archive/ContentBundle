@@ -12,6 +12,7 @@
 namespace ONGR\ContentBundle\Document;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
+use ONGR\RouterBundle\Document\SeoAwareInterface;
 use ONGR\RouterBundle\Document\SeoAwareTrait;
 use ONGR\ElasticsearchBundle\Document\AbstractDocument;
 
@@ -20,7 +21,7 @@ use ONGR\ElasticsearchBundle\Document\AbstractDocument;
  *
  * @ES\Document(create=false)
  */
-abstract class AbstractCategoryDocument extends AbstractDocument
+abstract class AbstractCategoryDocument extends AbstractDocument implements SeoAwareInterface
 {
     use SeoAwareTrait;
 
