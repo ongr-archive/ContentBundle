@@ -35,7 +35,8 @@ Enable Content bundle in your AppKernel:
             // ...
             // Elasticsearch bundle - should be already added.
             new ONGR\ElasticsearchBundle\ONGRElasticsearchBundle(),
-            // The line you need to add.
+            // The lines you need to add.
+            new ONGR\RouterBundle\ONGRRouterBundle(),
             new ONGR\ContentBundle\ONGRContentBundle(),
         );  
     }
