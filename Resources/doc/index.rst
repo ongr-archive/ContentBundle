@@ -5,9 +5,9 @@ Content Bundle
     :titlesonly:
     :maxdepth: 1
     :glob:
-    
+
     *
-    
+
 ..
 
 Introduction
@@ -48,9 +48,9 @@ Category twig functions
 ..
 
 This function renders category tree. Parameters:
- - ``template`` (optional): Twig template used for rendering view.
- - ``maxLevel`` (optional): Maximum tree level.
- - ``selectedCategory`` (optional): Selected category id.
+ - ``template`` (optional): Twig template used for rendering view. Default: *ONGRContentBundle:Category:inc/categorytree.html.twig*
+ - ``maxLevel`` (optional): Maximum tree level. Unlimited if zero. Default: *0*.
+ - ``selectedCategory`` (optional): Selected category id. Default: *null*
 
 .. note:: When rendering new tree selected category will have a property ``current`` with a value of true.
 
@@ -62,8 +62,8 @@ This function renders category tree. Parameters:
 
 Renders tree from given tree array. Parameters:
  - ``tree``: Array of category documents.
- - ``selectedCategory`` (optional): Selected category id.
- - ``currentCategory`` (optional): Current category document.
+ - ``selectedCategory`` (optional): Selected category id. Default: *null*
+ - ``currentCategory`` (optional): Current category document. Default: *null*
  - ``template`` (optional): Twig template used for rendering view.
 
 If no template is passed it would check if it has saved from last call. It is saved when ``getCategoryTree`` function is called.
@@ -75,7 +75,7 @@ If no template is passed it would check if it has saved from last call. It is sa
 ..
 
 Renders tree starting from particular category. Parameters:
- - ``template`` (optional): Twig template used for rendering view.
- - ``maxLevel`` (optional): Maximum tree level.
- - ``selectedCategory`` (optional): Selected category id.
- - ``fromCategory`` (optional): Creates tree from this particular category id.
+ - ``template`` (optional): Twig template used for rendering view. Default *ONGRCategoryBundle:Category:inc/categorytree.html.twig*
+ - ``maxLevel`` (optional): Maximum tree level. Default: *0*
+ - ``selectedCategory`` (optional): Selected category id. Default: *null*
+ - ``fromCategory`` (optional): Creates tree from this particular category id. Default: *null*
