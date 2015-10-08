@@ -12,12 +12,12 @@
 namespace ONGR\ContentBundle\Document;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
-use ONGR\RouterBundle\Document\UrlObject as ParentUrlObject;
+use ONGR\RouterBundle\Document\UrlNested as ParentUrlObject;
 
 /**
  * Object used for documents which require UrlObject standard fields.
  *
- * @ES\Object
+ * @ES\Nested
  */
 class UrlObject extends ParentUrlObject
 {
