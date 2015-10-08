@@ -77,11 +77,11 @@ class CategoryService
     protected function buildQuery()
     {
         /** @var Search $search */
-        $search = $this->repository->createSearch();
-        $search->setSize($this->limit);
+        $search = $this->getRepository()->createSearch();
+        $search->setSize($this->getLimit());
         $search->addSort(new Sort('left', Sort::ORDER_ASC));
         $search->addQuery(new TermQuery('active', true), 'must');
-        if (!$this->loadHiddenCategories) {
+        if (!$this->loadHiddenCategories()) {
             $search->addQuery(new TermQuery('is_hidden', 0), 'must');
         }
 
@@ -118,7 +118,7 @@ class CategoryService
      */
     public function getCategory($id)
     {
-        $category = $this->repository->find($id);
+        $category = $this->getRepository()->find($id);
 
         return $category;
     }
@@ -198,7 +198,6 @@ class CategoryService
         }
 
         $this->expandNodes($references);
-
         $this->sortChildTree($tree);
 
         return $tree;
@@ -271,7 +270,7 @@ class CategoryService
         if (!isset($this->treeCache[$hash])) {
             $this->setLoadHiddenCategories($getHidden);
             $query = $this->buildQuery();
-            $results = $this->repository->execute($query, Repository::RESULTS_OBJECT);
+            $results = $this->getRepository()->execute($query, Repository::RESULTS_OBJECT);
             $tree = $this->buildTree($results, $maxLevel);
             $this->treeCache[$hash] = $tree;
         }
@@ -378,5 +377,35 @@ class CategoryService
     protected function setLoadHiddenCategories($param)
     {
         $this->loadHiddenCategories = $param;
+    }
+
+    /**
+     * Repository used for fetching categories.
+     *
+     * @return Repository
+     */
+    public function getRepository()
+    {
+        return $this->repository;
+    }
+
+    /**
+     * Should hidden categories be loaded.
+     *
+     * @return bool
+     */
+    public function loadHiddenCategories()
+    {
+        return $this->loadHiddenCategories;
+    }
+
+    /**
+     * Returns limit for query.
+     *
+     * @return int
+     */
+    public function getLimit()
+    {
+        return $this->limit;
     }
 }
