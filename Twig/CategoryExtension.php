@@ -214,11 +214,14 @@ class CategoryExtension extends \Twig_Extension
      */
     public function getCategoryChildTree(
         \Twig_Environment $environment,
-        $template = 'ONGRCategoryBundle:Category:inc/categorytree.html.twig',
+        $template = 'ONGRContentBundle:Category:inc/categorytree.html.twig',
         $maxLevel = 0,
         $selectedCategory = null,
         $fromCategory = null
     ) {
+        $this->setMaxLevel($maxLevel);
+        $this->setTemplate($template);
+
         $this->categoryService->setCurrentCategoryId($selectedCategory);
 
         $tree = $this->categoryService->getPartialTree($maxLevel, $fromCategory);
