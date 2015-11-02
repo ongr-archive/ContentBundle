@@ -12,8 +12,8 @@
 namespace ONGR\ContentBundle\Tests\Unit\Service;
 
 use ONGR\ContentBundle\Service\ContentService;
-use ONGR\ElasticsearchBundle\DSL\Query\TermQuery;
-use ONGR\ElasticsearchBundle\ORM\Repository;
+use ONGR\ElasticsearchDSL\Query\TermQuery;
+use ONGR\ElasticsearchBundle\Service\Repository;
 use Psr\Log\LoggerInterface;
 
 class ContentServiceTest extends \PHPUnit_Framework_TestCase
@@ -66,7 +66,7 @@ class ContentServiceTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('addQuery')
             ->with(
-                $this->isInstanceOf('ONGR\ElasticsearchBundle\DSL\Query\TermQuery'),
+                $this->isInstanceOf('ONGR\ElasticsearchDSL\Query\TermQuery'),
                 'must'
             );
 

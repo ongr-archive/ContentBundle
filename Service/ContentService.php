@@ -12,8 +12,8 @@
 namespace ONGR\ContentBundle\Service;
 
 use ONGR\ElasticsearchBundle\Document\DocumentInterface;
-use ONGR\ElasticsearchBundle\DSL\Query\TermQuery;
-use ONGR\ElasticsearchBundle\ORM\Repository;
+use ONGR\ElasticsearchDSL\Query\TermQuery;
+use ONGR\ElasticsearchBundle\Service\Repository;
 use Psr\Log\LoggerAwareTrait;
 
 /**

@@ -30,7 +30,7 @@ trait UrlObjectTrait
     /**
      * @var string
      *
-     * @ES\Property(name="key", type="string", index="no")
+     * @ES\Property(name="key", type="string", options={"index"="no"})
      */
     private $urlKey;
 

@@ -13,7 +13,7 @@ namespace ONGR\ContentBundle\Tests\Unit\Service;
 
 use ErrorException;
 use ONGR\ContentBundle\Service\CategoryService;
-use ONGR\ElasticsearchBundle\ORM\Repository;
+use ONGR\ElasticsearchBundle\Service\Repository;
 
 /**
  * This class holds unit tests for category service.
@@ -35,7 +35,7 @@ class CategoryServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->repositoryMock = $this->getMockBuilder('ONGR\ElasticsearchBundle\ORM\Repository')
+        $this->repositoryMock = $this->getMockBuilder('ONGR\ElasticsearchBundle\Service\Repository')
             ->setMethods(['execute'])
             ->disableOriginalConstructor()
             ->getMock();

@@ -23,14 +23,14 @@ trait ContentTrait
     /**
      * @var string
      *
-     * @ES\Property(type="string", name="slug", index="not_analyzed")
+     * @ES\Property(type="string", name="slug", options={"index"="not_analyzed"})
      */
     private $slug;
 
     /**
      * @var string
      *
-     * @ES\Property(type="string", name="title", index="not_analyzed")
+     * @ES\Property(type="string", name="title", options={"index"="not_analyzed"})
      */
     private $title;
 

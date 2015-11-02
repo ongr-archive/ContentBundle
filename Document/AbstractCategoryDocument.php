@@ -55,7 +55,7 @@ abstract class AbstractCategoryDocument extends AbstractDocument
     /**
      * @var string
      *
-     * @ES\Property(type="string", name="title", index="not_analyzed")
+     * @ES\Property(type="string", name="title", options={"index"="not_analyzed"})
      */
     protected $title;
 

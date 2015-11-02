@@ -12,13 +12,13 @@
 namespace ONGR\ContentBundle\Tests\Functional\Twig;
 
 use ONGR\ContentBundle\Twig\ContentExtension;
-use ONGR\ElasticsearchBundle\Test\ElasticsearchTestCase;
+use ONGR\ElasticsearchBundle\Test\AbstractElasticsearchTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
 use Symfony\Component\Routing\RouterInterface;
 
-class ContentExtensionsTest extends ElasticsearchTestCase
+class ContentExtensionsTest extends AbstractElasticsearchTestCase
 {
     /**
      * {@inheritdoc}

@@ -30,14 +30,14 @@ trait ImagesNestedTrait
     /**
      * @var string
      *
-     * @ES\Property(name="title", type="string", index="no")
+     * @ES\Property(name="title", type="string", options={"index"="no"})
      */
     private $title;
 
     /**
      * @var string
      *
-     * @ES\Property(name="description", type="string", index="no")
+     * @ES\Property(name="description", type="string", options={"index"="no"})
      */
     private $description;
 

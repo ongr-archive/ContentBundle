@@ -11,8 +11,8 @@
 
 namespace ONGR\ContentBundle\Twig;
 
-use ONGR\ElasticsearchBundle\DSL\Query\TermsQuery;
-use ONGR\ElasticsearchBundle\ORM\Repository;
+use ONGR\ElasticsearchDSL\Query\TermsQuery;
+use ONGR\ElasticsearchBundle\Service\Repository;
 use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
 use Symfony\Component\Routing\RouterInterface;
 
