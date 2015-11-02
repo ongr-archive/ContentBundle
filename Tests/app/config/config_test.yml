@@ -18,14 +18,23 @@ monolog:
             path:  %kernel.logs_dir%/test.log
 
 ongr_elasticsearch:
+    analysis:
+        analyzer:
+            urlAnalyzer:
+                type: custom
+                tokenizer: keyword
+                filter: [lowercase]
     connections:
         default:
             hosts:
-                - { host: 127.0.0.1:9200 }
+                - 127.0.0.1:9200
             index_name: ongr-content-bundle-test
             settings:
                 refresh_interval: -1
                 number_of_replicas: 0
+            analysis:
+                analyzer:
+                    - urlAnalyzer
     managers:
         default:
             connection: default

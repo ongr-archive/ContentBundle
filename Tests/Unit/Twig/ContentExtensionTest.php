@@ -12,7 +12,7 @@
 namespace ONGR\ContentBundle\Tests\Unit\Twig;
 
 use ONGR\ContentBundle\Twig\ContentExtension;
-use ONGR\ElasticsearchBundle\ORM\Manager;
+use ONGR\ElasticsearchBundle\Service\Manager;
 use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -197,11 +197,11 @@ class ContentExtensionTest extends \PHPUnit_Framework_TestCase
      */
     protected function getManager($result = [])
     {
-        $manager = $this->getMockBuilder('ONGR\ElasticsearchBundle\ORM\Manager')
+        $manager = $this->getMockBuilder('ONGR\ElasticsearchBundle\Service\Manager')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $repository = $this->getMockBuilder('ONGR\ElasticsearchBundle\ORM\Repository')
+        $repository = $this->getMockBuilder('ONGR\ElasticsearchBundle\Service\Repository')
             ->disableOriginalConstructor()
             ->setMethods(['execute'])
             ->getMock();

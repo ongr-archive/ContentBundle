@@ -13,8 +13,8 @@
     "require": {
         "php": ">=5.4",
         "symfony/symfony": "~2.6",
-        "ongr/elasticsearch-bundle": "~0.8",
-        "ongr/router-bundle": "~0.4.0"
+        "ongr/elasticsearch-bundle": "dev-master",
+        "ongr/router-bundle": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.1",

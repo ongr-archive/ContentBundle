@@ -153,7 +153,7 @@ class CategoryServiceTest extends AbstractElasticsearchTestCase
      */
     protected function buildCategory($category)
     {
-        $cat = $this->getManager()->getRepository('AcmeTestBundle:Category')->createDocument();
+        $cat = new Category();
         $cat->setId($category['id']);
         $cat->setActive($category['active']);
         $cat->setSort($category['sort']);
@@ -163,7 +163,6 @@ class CategoryServiceTest extends AbstractElasticsearchTestCase
         isset($category['is_hidden']) && $cat->setHidden($category['is_hidden']);
         isset($category['is_current']) && $cat->setCurrent($category['is_current']);
         isset($category['is_expanded']) && $cat->setExpanded($category['is_expanded']);
-        $cat->__setInitialized(true);
 
         return $cat;
     }
